@@ -1,0 +1,12 @@
+/myenv
+/motodata_tracking/activies/__pycache__/
+/motodata_tracking/notifications/__pycache__/
+/motodata_tracking/feedback/__pycache__/
+/motodata_tracking/users/__pycache__/
+/motodata_tracking/vehicles/__pycache__/
+
+/motodata_tracking/activies/migrations/__pycache__/
+/motodata_tracking/notifications/migrations/__pycache__/
+/motodata_tracking/feedback/migrations/__pycache__/
+/motodata_tracking/users/migrations/__pycache__/
+/motodata_tracking/vehicles/migrations/__pycache__/
