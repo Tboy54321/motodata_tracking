@@ -4,4 +4,4 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def vehicles(request):
-    return HttpResponse("Hello Vehicles")
+    return render(request, 'vehicle-dashboard.html')

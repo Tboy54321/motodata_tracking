@@ -1,0 +1,227 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoTrack - Vehicle Repair Dashboard</title>
+    <link href="{% static 'styles/dashboard.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="logo">MotoTrack</h1>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                    Active Repairs
+                </a>
+                <a href="#" class="nav-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Repair History
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-title">
+                    <h2>Dashboard</h2>
+                    <p>Overview of your vehicle repairs and service status</p>
+                </div>
+                <div class="user-section">
+                    <button class="notification-btn">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <span class="user-name">John Doe</span>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Active Repairs</h3>
+                        <span class="stat-icon blue">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <p class="stat-value">3</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Pending Start</h3>
+                        <span class="stat-icon yellow">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <p class="stat-value">1</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Completed</h3>
+                        <span class="stat-icon green">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <p class="stat-value">12</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Requires Attention</h3>
+                        <span class="stat-icon red">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <p class="stat-value">1</p>
+                </div>
+            </div>
+
+            <!-- Active Repairs Section -->
+            <section class="repairs-section">
+                <h3>Active Repairs</h3>
+                <div class="repairs-grid">
+                    <!-- Toyota Camry Card -->
+                    <div class="repair-card">
+                        <h4>Toyota Camry 2020</h4>
+                        <span class="status-badge in-progress">In Progress</span>
+                        
+                        <div class="repair-details">
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                Started: Mar 15, 2024
+                            </div>
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Est. Completion: Mar 18, 2024
+                            </div>
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                                </svg>
+                                Brake System Maintenance
+                            </div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Honda Civic Card -->
+                    <div class="repair-card">
+                        <h4>Honda Civic 2021</h4>
+                        <span class="status-badge pending">Pending</span>
+                        
+                        <div class="repair-details">
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                Started: Mar 16, 2024
+                            </div>
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Est. Completion: Mar 19, 2024
+                            </div>
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                                </svg>
+                                Awaiting Parts
+                            </div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span>25%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ford F-150 Card -->
+                    <div class="repair-card">
+                        <h4>Ford F-150 2019</h4>
+                        <span class="status-badge in-progress">In Progress</span>
+                        
+                        <div class="repair-details">
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                Started: Mar 14, 2024
+                            </div>
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Est. Completion: Mar 17, 2024
+                            </div>
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                                </svg>
+                                Engine Diagnostics
+                            </div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
