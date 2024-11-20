@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoTrack - Notifications</title>
+    <link rel="stylesheet" href="{% static 'styles/notification.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">MotoTrack</div>
+            <ul class="nav-items">
+                <li><a href="#"><span class="icon">⊞</span> Dashboard</a></li>
+                <li><a href="#"><span class="icon">🚗</span> My Vehicles</a></li>
+                <li class="active"><a href="#"><span class="icon">🔔</span> Notifications</a></li>
+                <li><a href="#"><span class="icon">⟳</span> Repair History</a></li>
+                <li><a href="#"><span class="icon">💭</span> Feedback</a></li>
+                <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+            </ul>
+        </nav>
+        
+        <main class="main-content">
+            <header>
+                <div class="user-info">
+                    <span class="notification-icon">🔔</span>
+                    <span class="user-name">John Doe</span>
+                    <span class="user-avatar">👤</span>
+                </div>
+            </header>
+
+            <div class="notifications-container">
+                <div class="notifications-header">
+                    <h1>Notifications</h1>
+                    <button class="mark-read">Mark all as read</button>
+                </div>
+                <p class="subtitle">Stay updated with your vehicle service progress</p>
+
+                <div class="notification-list">
+                    <div class="notification-item">
+                        <div class="notification-icon blue">⏱</div>
+                        <div class="notification-content">
+                            <h3>Repair Progress Update</h3>
+                            <p>Brake system maintenance is 65% complete</p>
+                            <p class="vehicle">Vehicle: Toyota Camry 2020</p>
+                        </div>
+                        <div class="notification-meta">
+                            <span class="time">2 hours ago</span>
+                            <span class="status-dot blue"></span>
+                            <span class="arrow">›</span>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon yellow">⚠</div>
+                        <div class="notification-content">
+                            <h3>Parts Arrival Notice</h3>
+                            <p>Required parts have arrived and installation will begin shortly</p>
+                            <p class="vehicle">Vehicle: Honda Civic 2021</p>
+                        </div>
+                        <div class="notification-meta">
+                            <span class="time">3 hours ago</span>
+                            <span class="status-dot yellow"></span>
+                            <span class="arrow">›</span>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon green">✓</div>
+                        <div class="notification-content">
+                            <h3>Service Completed</h3>
+                            <p>Engine diagnostics and tune-up has been completed</p>
+                            <p class="vehicle">Vehicle: Ford F-150 2019</p>
+                        </div>
+                        <div class="notification-meta">
+                            <span class="time">1 day ago</span>
+                            <span class="arrow">›</span>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon purple">🔧</div>
+                        <div class="notification-content">
+                            <h3>New Task Started</h3>
+                            <p>Technician has begun working on transmission inspection</p>
+                            <p class="vehicle">Vehicle: Toyota Camry 2020</p>
+                        </div>
+                        <div class="notification-meta">
+                            <span class="time">1 day ago</span>
+                            <span class="arrow">›</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

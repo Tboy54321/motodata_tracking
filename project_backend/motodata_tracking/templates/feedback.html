@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoTrack - Feedback</title>
+    <link rel="stylesheet" href="{% static 'styles/feedback.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">MotoTrack</div>
+            <ul class="nav-items">
+                <li><a href="#"><span class="icon">⊞</span> Dashboard</a></li>
+                <li><a href="#"><span class="icon">🚗</span> My Vehicles</a></li>
+                <li><a href="#"><span class="icon">🔔</span> Notifications</a></li>
+                <li><a href="#"><span class="icon">⟳</span> Repair History</a></li>
+                <li class="active"><a href="#"><span class="icon">💭</span> Feedback</a></li>
+                <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+            </ul>
+        </nav>
+        
+        <main class="main-content">
+            <header>
+                <div class="user-info">
+                    <span class="notification-icon">🔔</span>
+                    <span class="user-name">John Doe</span>
+                    <span class="user-avatar">👤</span>
+                </div>
+            </header>
+
+            <div class="feedback-container">
+                <h1>Service Feedback</h1>
+                <p class="subtitle">Share your experience with our service</p>
+
+                <div class="feedback-form card">
+                    <div class="rating-section">
+                        <h3>Rate your experience</h3>
+                        <div class="star-rating">
+                            <span class="star">☆</span>
+                            <span class="star">☆</span>
+                            <span class="star">☆</span>
+                            <span class="star">☆</span>
+                            <span class="star">☆</span>
+                        </div>
+                    </div>
+
+                    <div class="feedback-input">
+                        <h3>Your feedback</h3>
+                        <textarea placeholder="Share your experience with our service..."></textarea>
+                    </div>
+
+                    <button class="submit-btn">Submit Feedback</button>
+                </div>
+
+                <div class="previous-feedback">
+                    <h2>Your Previous Feedback</h2>
+                    
+                    <div class="feedback-item card">
+                        <div class="feedback-header">
+                            <div class="star-rating filled">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <span class="feedback-date">Mar 15, 2024</span>
+                        </div>
+                        <p class="feedback-text">Excellent service! The team was very professional and completed the work ahead of schedule.</p>
+                        <div class="service-details">
+                            <span class="service-type">Brake System Maintenance</span>
+                            <span class="vehicle-info">2020 Toyota Camry</span>
+                        </div>
+                        <div class="service-response">
+                            <h4>Response from Service Team</h4>
+                            <p>Thank you for your kind feedback! We're glad we could exceed your expectations.</p>
+                        </div>
+                    </div>
+
+                    <div class="feedback-item card">
+                        <div class="feedback-header">
+                            <div class="star-rating filled">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">☆</span>
+                            </div>
+                            <span class="feedback-date">Jan 20, 2024</span>
+                        </div>
+                        <p class="feedback-text">Good service overall. Clear communication throughout the process.</p>
+                        <div class="service-details">
+                            <span class="service-type">Oil Change and Filter Replacement</span>
+                            <span class="vehicle-info">2020 Toyota Camry</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

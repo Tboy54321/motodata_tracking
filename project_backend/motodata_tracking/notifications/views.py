@@ -5,4 +5,4 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def notifications(request):
-    return HttpResponse("Hello notifications")
+    return render(request, 'notification.html')
