@@ -1,167 +1,140 @@
+{% extends 'user-main.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotoTrack - Vehicle Management</title>
+{% block styles %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'styles/vehicle-details.css' %}">
-</head>
-<body>
-    <div class="container">
-        <nav class="sidebar">
-            <div class="logo">MotoTrack</div>
-            <ul class="nav-items">
-                <li><a href="#"><span class="icon">⊞</span> Dashboard</a></li>
-                <li class="active"><a href="#"><span class="icon">🚗</span> My Vehicles</a></li>
-                <li><a href="#"><span class="icon">🔔</span> Notifications</a></li>
-                <li><a href="#"><span class="icon">⟳</span> Repair History</a></li>
-                <li><a href="#"><span class="icon">💭</span> Feedback</a></li>
-                <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
-            </ul>
-        </nav>
-        
-        <main class="main-content">
-            <header>
-                <div class="user-info">
-                    <span class="notification-icon">🔔</span>
-                    <span class="user-name">John Doe</span>
-                    <span class="user-avatar">👤</span>
-                </div>
-            </header>
+{% endblock %}
 
-            <div class="vehicle-details">
-                <div class="vehicle-header">
-                    <div class="vehicle-info">
-                        <div class="vehicle-icon">🚗</div>
-                        <div>
-                            <h1>2020 Toyota Camry</h1>
-                            <div class="vehicle-meta">
-                                <span>License Plate: ABC 123</span>
-                                <span>VIN: 1HGCM82633A123456</span>
-                            </div>
+{% block content %}
+<div class="vehicle-details">
+    <div class="vehicle-header">
+        <div class="vehicle-info">
+            <div class="vehicle-icon">🚗</div>
+            <div>
+                <h1>2020 Toyota Camry</h1>
+                <div class="vehicle-meta">
+                    <span>License Plate: ABC 123</span>
+                    <span>VIN: 1HGCM82633A123456</span>
+                </div>
+            </div>
+        </div>
+        <span class="status-badge">In Progress</span>
+    </div>
+
+    <div class="content-grid">
+        <div class="main-section">
+            <div class="card">
+                <h2>Current Condition</h2>
+                <p>Vehicle is undergoing scheduled maintenance. All systems are operational, with brake system being serviced.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Current Job Progress</h2>
+                    <div class="progress-info">
+                        <div class="progress-detail">
+                            <span>Technician: Mike Johnson</span>
+                            <span>Start Date: Mar 15, 2024</span>
+                            <span>Expected Completion: Mar 18, 2024</span>
+                            <span>Service Type: Brake System Maintenance and General Service</span>
                         </div>
                     </div>
-                    <span class="status-badge">In Progress</span>
                 </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 65%"></div>
+                </div>
+                <div class="task-list">
+                    <h3>Task Breakdown</h3>
+                    <div class="task-item completed">
+                        <span class="task-icon">✓</span>
+                        <span class="task-name">Initial Inspection</span>
+                        <span class="task-status">Completed</span>
+                    </div>
+                    <div class="task-item completed">
+                        <span class="task-icon">✓</span>
+                        <span class="task-name">Brake Pad Replacement</span>
+                        <span class="task-status">Completed</span>
+                    </div>
+                    <div class="task-item in-progress">
+                        <span class="task-icon">🔄</span>
+                        <span class="task-name">Rotor Inspection</span>
+                        <span class="task-status">In-progress</span>
+                    </div>
+                    <div class="task-item pending">
+                        <span class="task-icon">⭕</span>
+                        <span class="task-name">Fluid Check</span>
+                        <span class="task-status">Pending</span>
+                    </div>
+                    <div class="task-item pending">
+                        <span class="task-icon">⭕</span>
+                        <span class="task-name">Test Drive</span>
+                        <span class="task-status">Pending</span>
+                    </div>
+                </div>
+            </div>
 
-                <div class="content-grid">
-                    <div class="main-section">
-                        <div class="card">
-                            <h2>Current Condition</h2>
-                            <p>Vehicle is undergoing scheduled maintenance. All systems are operational, with brake system being serviced.</p>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Service History</h2>
+                    <a href="#" class="view-all">View All History</a>
+                </div>
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="service-icon">🔧</div>
+                        <div class="service-info">
+                            <h4>Oil Change and Filter Replacement</h4>
+                            <p>Technician: Sarah Smith</p>
+                            <p>Synthetic oil used. Next service due in 5,000 miles.</p>
                         </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Current Job Progress</h2>
-                                <div class="progress-info">
-                                    <div class="progress-detail">
-                                        <span>Technician: Mike Johnson</span>
-                                        <span>Start Date: Mar 15, 2024</span>
-                                        <span>Expected Completion: Mar 18, 2024</span>
-                                        <span>Service Type: Brake System Maintenance and General Service</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 65%"></div>
-                            </div>
-                            <div class="task-list">
-                                <h3>Task Breakdown</h3>
-                                <div class="task-item completed">
-                                    <span class="task-icon">✓</span>
-                                    <span class="task-name">Initial Inspection</span>
-                                    <span class="task-status">Completed</span>
-                                </div>
-                                <div class="task-item completed">
-                                    <span class="task-icon">✓</span>
-                                    <span class="task-name">Brake Pad Replacement</span>
-                                    <span class="task-status">Completed</span>
-                                </div>
-                                <div class="task-item in-progress">
-                                    <span class="task-icon">🔄</span>
-                                    <span class="task-name">Rotor Inspection</span>
-                                    <span class="task-status">In-progress</span>
-                                </div>
-                                <div class="task-item pending">
-                                    <span class="task-icon">⭕</span>
-                                    <span class="task-name">Fluid Check</span>
-                                    <span class="task-status">Pending</span>
-                                </div>
-                                <div class="task-item pending">
-                                    <span class="task-icon">⭕</span>
-                                    <span class="task-name">Test Drive</span>
-                                    <span class="task-status">Pending</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Service History</h2>
-                                <a href="#" class="view-all">View All History</a>
-                            </div>
-                            <div class="service-list">
-                                <div class="service-item">
-                                    <div class="service-icon">🔧</div>
-                                    <div class="service-info">
-                                        <h4>Oil Change and Filter Replacement</h4>
-                                        <p>Technician: Sarah Smith</p>
-                                        <p>Synthetic oil used. Next service due in 5,000 miles.</p>
-                                    </div>
-                                    <div class="service-meta">
-                                        <span class="service-price">$89.99</span>
-                                        <span class="service-date">Jan 15, 2024</span>
-                                    </div>
-                                </div>
-                                <div class="service-item">
-                                    <div class="service-icon">🔧</div>
-                                    <div class="service-info">
-                                        <h4>Tire Rotation and Balance</h4>
-                                        <p>Technician: Mike Johnson</p>
-                                        <p>All tires showing even wear.</p>
-                                    </div>
-                                    <div class="service-meta">
-                                        <span class="service-price">$65.00</span>
-                                        <span class="service-date">Oct 10, 2023</span>
-                                    </div>
-                                </div>
-                                <div class="service-item">
-                                    <div class="service-icon">🔧</div>
-                                    <div class="service-info">
-                                        <h4>AC System Service</h4>
-                                        <p>Technician: David Chen</p>
-                                        <p>Refrigerant recharged, new cabin filter installed.</p>
-                                    </div>
-                                    <div class="service-meta">
-                                        <span class="service-price">$250.00</span>
-                                        <span class="service-date">Jul 05, 2023</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="service-meta">
+                            <span class="service-price">$89.99</span>
+                            <span class="service-date">Jan 15, 2024</span>
                         </div>
                     </div>
-
-                    <div class="sidebar-section">
-                        <div class="card">
-                            <h2>Alerts</h2>
-                            <div class="alert-list">
-                                <div class="alert-item">
-                                    <span class="alert-icon">⚠️</span>
-                                    <p>Recommended tire replacement within next 3,000 miles</p>
-                                </div>
-                                <div class="alert-item">
-                                    <span class="alert-icon">⚠️</span>
-                                    <p>Schedule transmission fluid check</p>
-                                </div>
-                            </div>
+                    <div class="service-item">
+                        <div class="service-icon">🔧</div>
+                        <div class="service-info">
+                            <h4>Tire Rotation and Balance</h4>
+                            <p>Technician: Mike Johnson</p>
+                            <p>All tires showing even wear.</p>
+                        </div>
+                        <div class="service-meta">
+                            <span class="service-price">$65.00</span>
+                            <span class="service-date">Oct 10, 2023</span>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🔧</div>
+                        <div class="service-info">
+                            <h4>AC System Service</h4>
+                            <p>Technician: David Chen</p>
+                            <p>Refrigerant recharged, new cabin filter installed.</p>
+                        </div>
+                        <div class="service-meta">
+                            <span class="service-price">$250.00</span>
+                            <span class="service-date">Jul 05, 2023</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="card">
+                <h2>Alerts</h2>
+                <div class="alert-list">
+                    <div class="alert-item">
+                        <span class="alert-icon">⚠️</span>
+                        <p>Recommended tire replacement within next 3,000 miles</p>
+                    </div>
+                    <div class="alert-item">
+                        <span class="alert-icon">⚠️</span>
+                        <p>Schedule transmission fluid check</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock content %}

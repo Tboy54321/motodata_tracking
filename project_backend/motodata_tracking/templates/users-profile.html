@@ -1,0 +1,75 @@
+{% extends 'user-main.html' %}
+{% load static %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/users-profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>Profile Settings</h1>
+    <p class="subtitle">Manage your account information and linked vehicles</p>
+
+    <div class="settings-grid">
+        <div class="personal-info card">
+            <div class="card-header">
+                <h2>Personal Information</h2>
+                <button class="edit-btn">Edit</button>
+            </div>
+            
+            <div class="info-item">
+                <label>Full Name</label>
+                <p>John Doe</p>
+            </div>
+            
+            <div class="info-item">
+                <label>Email Address</label>
+                <p>john.doe@example.com</p>
+            </div>
+            
+            <div class="info-item">
+                <label>Phone Number</label>
+                <p>+1 (555) 123-4567</p>
+            </div>
+            
+            <div class="info-item">
+                <label>Address</label>
+                <p>123 Main St, Anytown, ST 12345</p>
+            </div>
+        </div>
+
+        <div class="linked-vehicles card">
+            <h2>Linked Vehicles</h2>
+            
+            <div class="vehicle-item">
+                <div class="vehicle-icon">🚗</div>
+                <div class="vehicle-info">
+                    <h3>2020 Toyota Camry</h3>
+                    <p>ABC 123</p>
+                </div>
+                <button class="arrow-btn">→</button>
+            </div>
+
+            <div class="vehicle-item">
+                <div class="vehicle-icon">🚗</div>
+                <div class="vehicle-info">
+                    <h3>2021 Honda Civic</h3>
+                    <p>XYZ 789</p>
+                </div>
+                <button class="arrow-btn">→</button>
+            </div>
+        </div>
+
+        <div class="password-section card">
+            <div class="card-header">
+                <h2>Password</h2>
+                <button class="change-password-btn">Change Password</button>
+            </div>
+            <div class="password-placeholder">
+                ••••••••
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

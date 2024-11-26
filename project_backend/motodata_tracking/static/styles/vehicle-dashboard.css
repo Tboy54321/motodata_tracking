@@ -1,34 +1,7 @@
 /* Reset and base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #f9fafb;
-    color: #111827;
-}
-
 .container {
     display: flex;
     min-height: 100vh;
-}
-
-/* Sidebar styles */
-.sidebar {
-    width: 256px;
-    background-color: white;
-    border-right: 1px solid #e5e7eb;
-    padding: 1.5rem;
-}
-
-.logo {
-    color: #2563eb;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
 }
 
 .nav-menu {

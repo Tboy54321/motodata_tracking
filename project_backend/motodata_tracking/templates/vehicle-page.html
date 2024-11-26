@@ -1,126 +1,103 @@
+{% extends 'user-main.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Management Dashboard</title>
+{% block styles %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'styles/vehicle-page.css' %}">
-</head>
-<body>
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="logo">MotoTrack</div>
-            <nav class="nav-menu">
-                <a href="#" class="nav-item">Dashboard</a>
-                <a href="#" class="nav-item active">My Vehicles</a>
-                <a href="#" class="nav-item">Repair History</a>
-                <a href="#" class="nav-item">Feedback</a>
-                <a href="#" class="nav-item">Settings</a>
-            </nav>
-        </aside>
+{% endblock %}
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="header">
-                <div class="notification">
-                    <div class="notification-dot"></div>
-                </div>
-                <div class="user-profile">John Doe</div>
-            </header>
+{% block content %}
+<main class="main-content">
+    <!-- Header -->
+    
 
-            <!-- Page Title -->
-            <div class="page-title">
-                <h1>My Vehicles</h1>
-                <p>Manage and track all your registered vehicles</p>
-            </div>
-
-            <!-- Vehicle Cards -->
-            <div class="vehicle-list">
-                <!-- Toyota Camry Card -->
-                <div class="vehicle-card">
-                    <div class="vehicle-icon">🚗</div>
-                    <div class="vehicle-info">
-                        <h2>2020 Toyota Camry</h2>
-                        <div class="vehicle-details">
-                            <p>License Plate: ABC 123</p>
-                            <p>VIN: 1HGCM82633A123456</p>
-                        </div>
-                        
-                        <div class="service-alerts">
-                            <h3>Service Alerts</h3>
-                            <ul>
-                                <li>Oil change recommended</li>
-                                <li>Brake inspection due</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="service-status">
-                            <div class="status-info">
-                                <span>Last Service: Mar 15, 2024</span>
-                                <span class="status-badge in-progress">In Progress</span>
-                            </div>
-                            <div class="next-service">
-                                Next service due: Sep 15, 2024
-                                <a href="#" class="view-history">View Service History</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="vehicle-card">
-                    <div class="vehicle-icon">🚗</div>
-                    <div class="vehicle-info">
-                        <h2>2020 Range Rover</h2>
-                        <div class="vehicle-details">
-                            <p>License Plate: SLC 123</p>
-                            <p>VIN: 1HGCM82633A123456</p>
-                        </div>
-                        
-                        <div class="service-alerts">
-                            <h3>Service Alerts</h3>
-                            <ul>
-                                <li>Oil change recommended</li>
-                                <li>Brake inspection due</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="service-status">
-                            <div class="status-info">
-                                <span>Last Service: Mar 15, 2024</span>
-                                <span class="status-badge in-progress">In Progress</span>
-                            </div>
-                            <div class="next-service">
-                                Next service due: Sep 15, 2024
-                                <a href="#" class="view-history">View Service History</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Honda Civic Card -->
-                <div class="vehicle-card">
-                    <div class="vehicle-icon">🚗</div>
-                    <div class="vehicle-info">
-                        <h2>2021 Honda Civic</h2>
-                        <div class="vehicle-details">
-                            <p>License Plate: XYZ 789</p>
-                            <p>VIN: 2HGES16575H123456</p>
-                        </div>
-                        
-                        <div class="service-status">
-                            <div class="status-info">
-                                <span>Last Service: Feb 28, 2024</span>
-                                <span class="status-badge completed">Completed</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>My Vehicles</h1>
+        <p>Manage and track all your registered vehicles</p>
     </div>
-</body>
-</html>
+
+    <!-- Vehicle Cards -->
+    <div class="vehicle-list">
+        <!-- Toyota Camry Card -->
+        <div class="vehicle-card">
+            <div class="vehicle-icon">🚗</div>
+            <div class="vehicle-info">
+                <h2>2020 Toyota Camry</h2>
+                <div class="vehicle-details">
+                    <p>License Plate: ABC 123</p>
+                    <p>VIN: 1HGCM82633A123456</p>
+                </div>
+                
+                <div class="service-alerts">
+                    <h3>Service Alerts</h3>
+                    <ul>
+                        <li>Oil change recommended</li>
+                        <li>Brake inspection due</li>
+                    </ul>
+                </div>
+                
+                <div class="service-status">
+                    <div class="status-info">
+                        <span>Last Service: Mar 15, 2024</span>
+                        <span class="status-badge in-progress">In Progress</span>
+                    </div>
+                    <div class="next-service">
+                        Next service due: Sep 15, 2024
+                        <a href="#" class="view-history">View Service History</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="vehicle-card">
+            <div class="vehicle-icon">🚗</div>
+            <div class="vehicle-info">
+                <h2>2020 Range Rover</h2>
+                <div class="vehicle-details">
+                    <p>License Plate: SLC 123</p>
+                    <p>VIN: 1HGCM82633A123456</p>
+                </div>
+                
+                <div class="service-alerts">
+                    <h3>Service Alerts</h3>
+                    <ul>
+                        <li>Oil change recommended</li>
+                        <li>Brake inspection due</li>
+                    </ul>
+                </div>
+                
+                <div class="service-status">
+                    <div class="status-info">
+                        <span>Last Service: Mar 15, 2024</span>
+                        <span class="status-badge in-progress">In Progress</span>
+                    </div>
+                    <div class="next-service">
+                        Next service due: Sep 15, 2024
+                        <a href="#" class="view-history">View Service History</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Honda Civic Card -->
+        <div class="vehicle-card">
+            <div class="vehicle-icon">🚗</div>
+            <div class="vehicle-info">
+                <h2>2021 Honda Civic</h2>
+                <div class="vehicle-details">
+                    <p>License Plate: XYZ 789</p>
+                    <p>VIN: 2HGES16575H123456</p>
+                </div>
+                
+                <div class="service-status">
+                    <div class="status-info">
+                        <span>Last Service: Feb 28, 2024</span>
+                        <span class="status-badge completed">Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -2,5 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.notifications, name='notifcations')
+    path('', views.notifications, name='notifcations'),
+    path('sa/notifictions/', views.saNotifications),
 ]

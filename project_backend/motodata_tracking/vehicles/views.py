@@ -11,3 +11,6 @@ def vehiclesPage(request):
 
 def vehiclesDetails(request):
     return render(request, 'vehicle-details.html')
+
+def saVehiclesManagement(request):
+    return render(request, 'sa-vehicle-management.html')
