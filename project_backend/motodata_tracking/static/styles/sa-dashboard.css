@@ -55,12 +55,6 @@ body {
     color: #4066ff;
 }
 
-.main-content {
-    flex: 1;
-    padding: 20px 40px;
-    overflow-y: auto;
-}
-
 header {
     display: flex;
     justify-content: flex-end;
@@ -77,6 +71,14 @@ header {
 .notification-icon {
     cursor: pointer;
 }
+
+.main-content {
+    flex: 1;
+    padding: 20px 40px;
+    overflow-y: auto;
+}
+
+
 
 .dashboard-container {
     max-width: 1200px;

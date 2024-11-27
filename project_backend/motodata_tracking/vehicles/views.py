@@ -1,16 +1,18 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
 
-def vehicles(request):
+def userDashboard(request):
     return render(request, 'vehicle-dashboard.html')
 
-def vehiclesPage(request):
+def userVehiclesPage(request):
     return render(request, 'vehicle-page.html')
 
-def vehiclesDetails(request):
+def userVehiclesDetails(request):
     return render(request, 'vehicle-details.html')
 
 def saVehiclesManagement(request):
     return render(request, 'sa-vehicle-management.html')
+
+def saDashboard(request):
+    return render(request, 'sa-dashboard.html')

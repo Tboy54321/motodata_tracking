@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.notifications, name='notifcations'),
-    path('sa/notifictions/', views.saNotifications),
+    path('sa/notifications/', views.saNotifications),
 ]

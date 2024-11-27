@@ -1,101 +1,70 @@
+{% extends 'sa-main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotoTrack - Notifications Management</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/components.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% block styles %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'styles/sa-notification-management.css' %}">
-</head>
-<body>
-    <nav class="sidebar">
-        <a href="/" class="logo">MotoTrack</a>
-        <a href="/service" class="nav-item">
-            <i class="fas fa-wrench"></i>
-            Service Adviser
-        </a>
-        <a href="/vehicles" class="nav-item">
-            <i class="fas fa-car"></i>
-            Vehicle Management
-        </a>
-        <a href="/notifications" class="nav-item active">
-            <i class="fas fa-bell"></i>
-            Notifications
-        </a>
-        <a href="/profile" class="nav-item">
-            <i class="fas fa-user"></i>
-            Profile
-        </a>
-        <a href="/settings" class="nav-item">
-            <i class="fas fa-cog"></i>
-            Settings
-        </a>
-    </nav>
+{% endblock %}
 
-    <main class="main-content">
-        <div class="header">
-            <div>
-                <h1>Notifications Management</h1>
-                <p>Manage and send notifications to customers</p>
+{% block content %}
+<main>
+    <div class="not-header">
+        <div>
+            <h1>Notifications Management</h1>
+            <p>Manage and send notifications to customers</p>
+        </div>
+        <button class="new-notification-btn">
+            <i class="fas fa-paper-plane"></i>
+            Send New Notification
+        </button>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search notifications...">
+        <button class="filter-button">
+            <i class="fas fa-filter"></i>
+            All Types
+        </button>
+    </div>
+
+    <div class="notifications-list">
+        <div class="notification-card">
+            <div class="notification-header">
+                <span class="notification-title">John Doe</span>
+                <span class="notification-time">2 hours ago</span>
             </div>
-            <button class="new-notification-btn">
-                <i class="fas fa-paper-plane"></i>
-                Send New Notification
-            </button>
+            <div class="notification-vehicle">2020 Toyota Camry</div>
+            <p>Your vehicle service is 65% complete. Brake system maintenance is progressing as scheduled.</p>
+            <div class="notification-status">
+                <span class="status-sent">Sent</span>
+                <span class="status-read"><i class="fas fa-check"></i> Read</span>
+            </div>
         </div>
 
-        <div class="search-bar">
-            <input type="text" class="search-input" placeholder="Search notifications...">
-            <button class="filter-button">
-                <i class="fas fa-filter"></i>
-                All Types
-            </button>
-        </div>
-
-        <div class="notifications-list">
-            <div class="notification-card">
-                <div class="notification-header">
-                    <span class="notification-title">John Doe</span>
-                    <span class="notification-time">2 hours ago</span>
-                </div>
-                <div class="notification-vehicle">2020 Toyota Camry</div>
-                <p>Your vehicle service is 65% complete. Brake system maintenance is progressing as scheduled.</p>
-                <div class="notification-status">
-                    <span class="status-sent">Sent</span>
-                    <span class="status-read"><i class="fas fa-check"></i> Read</span>
-                </div>
+        <div class="notification-card">
+            <div class="notification-header">
+                <span class="notification-title">Jane Smith</span>
+                <span class="notification-time">3 hours ago</span>
             </div>
-
-            <div class="notification-card">
-                <div class="notification-header">
-                    <span class="notification-title">Jane Smith</span>
-                    <span class="notification-time">3 hours ago</span>
-                </div>
-                <div class="notification-vehicle">2021 Honda Civic</div>
-                <p>Additional parts are required for your service. This may extend the completion time.</p>
-                <div class="notification-status">
-                    <span class="status-sent">Sent</span>
-                </div>
-            </div>
-
-            <div class="notification-card">
-                <div class="notification-header">
-                    <span class="notification-title">Jane Smith</span>
-                    <span class="notification-time">3 hours ago</span>
-                </div>
-                <div class="notification-vehicle">2021 Honda Civic</div>
-                <p>Additional parts are required for your service. This may extend the completion time.</p>
-                <div class="notification-status">
-                    <span class="status-sent">Sent</span>
-                </div>
+            <div class="notification-vehicle">2021 Honda Civic</div>
+            <p>Additional parts are required for your service. This may extend the completion time.</p>
+            <div class="notification-status">
+                <span class="status-sent">Sent</span>
             </div>
         </div>
-    </main>
-</body>
+
+        <div class="notification-card">
+            <div class="notification-header">
+                <span class="notification-title">Jane Smith</span>
+                <span class="notification-time">3 hours ago</span>
+            </div>
+            <div class="notification-vehicle">2021 Honda Civic</div>
+            <p>Additional parts are required for your service. This may extend the completion time.</p>
+            <div class="notification-status">
+                <span class="status-sent">Sent</span>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
 </html>

@@ -9,5 +9,4 @@ def usersProfile(request):
     return render(request, 'users-profile.html')
 
 def saProfile(request):
-    return render(request, 'sa-dashboard.html')
-
+    return render(request, 'sa-profile.html')
