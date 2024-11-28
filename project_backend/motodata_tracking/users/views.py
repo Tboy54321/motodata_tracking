@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def users(request):
+def login(request):
     return render(request, 'login.html')
 
 def usersProfile(request):

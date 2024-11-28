@@ -1,133 +1,98 @@
+{% extends 'sa-main.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotoTrack - Vehicle Management</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% block styles %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'styles/sa-vehicle-management.css' %}">
-</head>
-<body>
-    <nav class="sidebar">
-        <a href="/" class="logo">MotoTrack</a>
-        <a href="/service" class="nav-item">
-            <i class="fas fa-wrench"></i>
-            Service Adviser
-        </a>
-        <a href="/vehicles" class="nav-item active">
-            <i class="fas fa-car"></i>
-            Vehicle Management
-        </a>
-        <a href="/notifications" class="nav-item">
-            <i class="fas fa-bell"></i>
-            Notifications
-        </a>
-        <a href="/profile" class="nav-item">
-            <i class="fas fa-user"></i>
-            Profile
-        </a>
-        <a href="/settings" class="nav-item">
-            <i class="fas fa-cog"></i>
-            Settings
-        </a>
-    </nav>
+{% endblock %}
 
-    <main class="main-content">
-        <div class="header">
-            <div>
-                <h1>Vehicle Management</h1>
-                <p>Manage vehicle service jobs and assignments</p>
-            </div>
-            <button class="new-job-btn">
-                <i class="fas fa-plus"></i>
-                New Job Card
-            </button>
-        </div>
+{% block content %}
+<div class="header">
+    <div>
+        <h1>Vehicle Management</h1>
+        <p>Manage vehicle service jobs and assignments</p>
+    </div>
+</div>
 
-        <div class="search-bar">
-            <div class="search-input-wrapper">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search by customer, license plate, or vehicle">
-            </div>
-            <button class="filter-button">
-                <i class="fas fa-filter"></i>
-                All Status
-                <i class="fas fa-chevron-down"></i>
-            </button>
-        </div>
+<div class="search-bar">
+    <div class="search-input-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search by customer, license plate, or vehicle">
+    </div>
+    <button class="filter-button">
+        <i class="fas fa-filter"></i>
+        All Status
+        <i class="fas fa-chevron-down"></i>
+    </button>
+</div>
 
-        <div class="jobs-table">
-            <div class="table-header">
-                <div class="col-vehicle">VEHICLE & CUSTOMER</div>
-                <div class="col-status">STATUS</div>
-                <div class="col-details">JOB DETAILS</div>
-                <div class="col-technician">TECHNICIAN</div>
-                <div class="col-updated">LAST UPDATED</div>
-                <div class="col-actions">ACTIONS</div>
-            </div>
+<div class="jobs-table">
+    <div class="table-header">
+        <div class="col-vehicle">VEHICLE & CUSTOMER</div>
+        <div class="col-status">STATUS</div>
+        <div class="col-details">JOB DETAILS</div>
+        <div class="col-technician">TECHNICIAN</div>
+        <div class="col-updated">LAST UPDATED</div>
+        <div class="col-actions">ACTIONS</div>
+    </div>
 
-            <div class="table-row">
-                <div class="col-vehicle">
-                    <div class="vehicle-info">
-                        <i class="fas fa-car"></i>
-                        <div>
-                            <div class="vehicle-name">2020 Toyota Camry</div>
-                            <div class="customer-name">John Doe</div>
-                            <div class="license-plate">ABC 123</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-status">
-                    <span class="status-badge in-progress">In Progress</span>
-                    <span class="priority-badge high">High Priority</span>
-                </div>
-                <div class="col-details">
-                    <div class="job-title">Brake System Maintenance</div>
-                    <div class="job-description">Brake pads worn, rotors need inspection</div>
-                </div>
-                <div class="col-technician">
-                    <div class="technician-info">
-                        <i class="fas fa-user-circle"></i>
-                        Mike Johnson
-                    </div>
-                </div>
-                <div class="col-updated">2 hours ago</div>
-                <div class="col-actions">
-                    <button class="action-btn">Update Job Card</button>
-                </div>
-            </div>
-
-            <div class="table-row">
-                <div class="col-vehicle">
-                    <div class="vehicle-info">
-                        <i class="fas fa-car"></i>
-                        <div>
-                            <div class="vehicle-name">2021 Honda Civic</div>
-                            <div class="customer-name">Jane Smith</div>
-                            <div class="license-plate">XYZ 789</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-status">
-                    <span class="status-badge open">Open</span>
-                    <span class="priority-badge medium">Medium Priority</span>
-                </div>
-                <div class="col-details">
-                    <div class="job-title">Regular Maintenance</div>
-                    <div class="job-description">Scheduled for 50,000km service</div>
-                </div>
-                <div class="col-technician">
-                    <button class="assign-btn">Assign Technician</button>
-                </div>
-                <div class="col-updated">1 day ago</div>
-                <div class="col-actions">
-                    <button class="action-btn">Update Job Card</button>
+    <div class="table-row">
+        <div class="col-vehicle">
+            <div class="vehicle-info">
+                <i class="fas fa-car"></i>
+                <div>
+                    <div class="vehicle-name">2020 Toyota Camry</div>
+                    <div class="customer-name">John Doe</div>
+                    <div class="license-plate">ABC 123</div>
                 </div>
             </div>
         </div>
-    </main>
-</body>
-</html>
+        <div class="col-status">
+            <span class="status-badge in-progress">In Progress</span>
+            <span class="priority-badge high">High Priority</span>
+        </div>
+        <div class="col-details">
+            <div class="job-title">Brake System Maintenance</div>
+            <div class="job-description">Brake pads worn, rotors need inspection</div>
+        </div>
+        <div class="col-technician">
+            <div class="technician-info">
+                <i class="fas fa-user-circle"></i>
+                Mike Johnson
+            </div>
+        </div>
+        <div class="col-updated">2 hours ago</div>
+        <div class="col-actions">
+            <button class="action-btn">Update Job Card</button>
+        </div>
+    </div>
+
+    <div class="table-row">
+        <div class="col-vehicle">
+            <div class="vehicle-info">
+                <i class="fas fa-car"></i>
+                <div>
+                    <div class="vehicle-name">2021 Honda Civic</div>
+                    <div class="customer-name">Jane Smith</div>
+                    <div class="license-plate">XYZ 789</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-status">
+            <span class="status-badge open">Open</span>
+            <span class="priority-badge medium">Medium Priority</span>
+        </div>
+        <div class="col-details">
+            <div class="job-title">Regular Maintenance</div>
+            <div class="job-description">Scheduled for 50,000km service</div>
+        </div>
+        <div class="col-technician">
+            <button class="assign-btn">Assign Technician</button>
+        </div>
+        <div class="col-updated">1 day ago</div>
+        <div class="col-actions">
+            <button class="action-btn">Update Job Card</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
