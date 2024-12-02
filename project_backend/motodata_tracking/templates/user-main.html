@@ -15,12 +15,12 @@
         <nav class="sidebar">
             <div class="logo">MotoTrack</div>
             <ul class="nav-items">
-                <li><a href="#"><span class="icon">⊞</span> Dashboard</a></li>
-                <li><a href="#"><span class="icon">🚗</span> My Vehicles</a></li>
-                <li><a href="#"><span class="icon">🔔</span> Notifications</a></li>
+                <li class="{% if request.resolver_match.view_name == 'vehicle-dashboard' %}active{% endif %}"><a href="{% url 'vehicle-dashboard' %}"><span class="icon">⊞</span> Dashboard</a></li>
+                <li class="{% if request.resolver_match.view_name == 'vehicles-page' %}active{% endif %}"><a href="{% url 'vehicles-page' %}"><span class="icon">🚗</span> My Vehicles</a></li>
+                <li class="{% if request.resolver_match.view_name == 'notifcations' %}active{% endif %}"><a href="{% url 'notifcations' %}"><span class="icon">🔔</span> Notifications</a></li>
                 <li><a href="#"><span class="icon">⟳</span> Repair History</a></li>
-                <li><a href="#"><span class="icon">💭</span> Feedback</a></li>
-                <li class="active"><a href="#"><span class="icon">👤</span> Profile</a></li>
+                <li class="{% if request.resolver_match.view_name == 'feedback' %}active{% endif %}" ><a href="{% url 'feedback' %}"><span class="icon">💭</span> Feedback</a></li>
+                <li class="{% if request.resolver_match.view_name == 'profile' %}active{% endif %}"><a href="{% url 'profile' %}"><span class="icon">👤</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
             </ul>
         </nav>
@@ -28,9 +28,9 @@
         <main class="main-content">
             <header>
                 <div class="user-info">
-                    <span class="notification-icon">🔔</span>
+                    <a href="{% url 'notifcations' %}"><span class="notification-icon">🔔</span></a>
                     <span class="user-name">John Doe</span>
-                    <span class="user-avatar">👤</span>
+                    <a href="{% url 'profile' %}"><span class="user-avatar">👤</span></a>
                 </div>
             </header>
 
