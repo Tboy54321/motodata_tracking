@@ -207,3 +207,26 @@ header {
         grid-column: span 1;
     }
 }
+
+.info-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.save-btn, .cancel-btn {
+    background-color: #4066ff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.cancel-btn {
+    background-color: #ccc;
+    color: #333;
+}

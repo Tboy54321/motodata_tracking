@@ -16,7 +16,7 @@ class CustomerProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='customer_profile')
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    phone_number = models.IntegerField(max_length=20)
+    phone_number = models.IntegerField()
     address = models.TextField(max_length=100)
     # profile_picture = 
 
@@ -28,7 +28,7 @@ class ServiceAdviserProfile(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     department = models.CharField(max_length=15)
-    phone_number = models.CharField(max_length=20)
+    phone_number = models.IntegerField()
     # profile_picture
 
     def __str__(self):

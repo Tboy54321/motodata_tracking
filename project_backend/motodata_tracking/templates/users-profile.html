@@ -15,29 +15,38 @@
         <div class="personal-info card">
             <div class="card-header">
                 <h2>Personal Information</h2>
-                <button class="edit-btn">Edit</button>
+                <button class="edit-btn" onclick="toggleEditForm()">Edit</button>
             </div>
-            
-            <div class="info-item">
-                <label>Full Name</label>
-                <p>John Doe</p>
-            </div>
-            
-            <div class="info-item">
-                <label>Email Address</label>
-                <p>john.doe@example.com</p>
-            </div>
-            
-            <div class="info-item">
-                <label>Phone Number</label>
-                <p>+1 (555) 123-4567</p>
-            </div>
-            
-            <div class="info-item">
-                <label>Address</label>
-                <p>123 Main St, Anytown, ST 12345</p>
+
+            <div class="info-view">
+                <div class="info-item">
+                    <label>Full Name</label>
+                    <p>John Doe</p>
+                </div>
+                
+                <div class="info-item">
+                    <label>Email Address</label>
+                    <p>john.doe@example.com</p>
+                </div>
+                
+                <div class="info-item">
+                    <label>Phone Number</label>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                
+                <div class="info-item">
+                    <label>Address</label>
+                    <p>123 Main St, Anytown, ST 12345</p>
+                </div>
             </div>
         </div>
+
+        <form method="POST" action="" class="info-form" style="display: none;" onsubmit="saveChanges(event)">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+           
+        </form>
 
         <div class="linked-vehicles card">
             <h2>Linked Vehicles</h2>
@@ -73,3 +82,7 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'js/user-profile.js' %}"></script>
+{% endblock %}
