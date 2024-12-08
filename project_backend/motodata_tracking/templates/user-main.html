@@ -23,6 +23,11 @@
                 <li class="{% if request.resolver_match.view_name == 'profile' %}active{% endif %}"><a href="{% url 'profile' %}"><span class="icon">👤</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
             </ul>
+            {% if request.user.is_authenticated %}
+            <div class="logout-section">
+                <a href="{% url 'logout' %}" class="logout-btn"><span class="icon">🚪</span> Logout</a>
+            </div>
+            {% endif %}
         </nav>
         
         <main class="main-content">
