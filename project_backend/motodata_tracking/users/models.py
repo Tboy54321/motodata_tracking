@@ -1,8 +1,8 @@
-# from django.db import models
-# import uuid
-# from django.contrib.auth.models import AbstractUser
+from django.db import models
+import uuid
+from django.contrib.auth.models import AbstractUser, User
 
-# # Create your models here.
+# Create your models here.
 
 # class CustomUser(AbstractUser):
 #     email = models.EmailField(unique=True)
@@ -12,6 +12,19 @@
 #     def __str__(self):
 #         return self.email
     
+class CustomerProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    first_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, null=True, blank=True)
+    phone_number = models.CharField(max_length=100, null=True, blank=True)
+    email = models.EmailField(max_length=500, blank=True, null=True)
+    address = models.TextField(max_length=100, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def __str__(self):
+        return str(self.user.email)
+
 # class CustomerProfile(models.Model):
 #     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='customer_profile')
 #     first_name = models.CharField(max_length=100)
