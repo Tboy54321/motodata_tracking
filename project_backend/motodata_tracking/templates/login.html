@@ -94,6 +94,7 @@
             <form method="POST" action="{% url 'signup' %}" class="signup-form">
                 {% csrf_token %}
                 {{ form.as_p }}
+                
                 <!-- <div class="form-row"> -->
                     <!-- <div class="form-group">
                         <label for="firstName">First Name</label>

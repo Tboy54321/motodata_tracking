@@ -1,31 +1,25 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from .models import CustomerProfile
+from django.contrib.auth.password_validation import validate_password
 
-class CustomerProfileSignUpForm(forms.ModelForm):
-    username = forms.CharField(max_length=150, required=True)
-    password = forms.CharField(widget=forms.PasswordInput, required=True)
+class CustomerProfileSignUpForm(UserCreationForm):
+    phone_number = forms.CharField(max_length=15, required=False)
+    address = forms.CharField(widget=forms.Textarea, required=False)
 
     class Meta:
-        model = CustomerProfile
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'address']
+        model = User
+        fields = ['username', 'email', 'password1', 'password2', 'phone_number', 'address']
 
     def save(self, commit=True):
-        customer_profile = super().save(commit=False)
-
-        username = self.cleaned_data['username']
-        password = self.cleaned_data['password']
-
-        user = User.objects.create_user(
-            username=username,
-            password=password,
-            first_name=self.cleaned_data.get('first_name', ''),
-            last_name=self.cleaned_data.get('last_name', ''),
-            email=self.cleaned_data.get('email', '')
-        )
-
-        customer_profile.user = user
+        user = super().save(commit=False)
 
         if commit:
-            customer_profile.save()
-        return customer_profile
+            user.save()
+            CustomerProfile.objects.create(
+                user=user,
+                phone_number=self.cleaned_data['phone_number'],
+                address=self.cleaned_data['address']
+            )
+        return user

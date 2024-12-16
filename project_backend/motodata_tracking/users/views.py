@@ -43,22 +43,19 @@ def logoutUser(request):
 
 def signUpUser(request):
     page = 'signup'
-    
+
     if request.user.is_authenticated:
         return redirect('profile')
     
     if request.method == 'POST':
         form = CustomerProfileSignUpForm(request.POST)
         if form.is_valid():
-            customer_profile = form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
+            user = form.save()
+            login(request, user)
+            return redirect('profile')
             
-            if user is not None:
-                login(request, user)
-                messages.success(request, 'Account created successfully')
-                return redirect('profile') 
+        else:
+            messages.success(request, 'An error has occurred during regisration')
     else:
         form = CustomerProfileSignUpForm()
     

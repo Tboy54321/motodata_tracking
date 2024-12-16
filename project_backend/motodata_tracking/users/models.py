@@ -14,17 +14,13 @@ from django.contrib.auth.models import AbstractUser, User
 #         return self.email
     
 class CustomerProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    first_name = models.CharField(max_length=100, null=True, blank=True)
-    last_name = models.CharField(max_length=100, null=True, blank=True)
-    phone_number = models.CharField(max_length=100, null=True, blank=True)
-    email = models.EmailField(max_length=500, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name='customerprofile')
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
     address = models.TextField(max_length=100, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
-        return str(self.user.email)
+        return str(self.user.username)
 
 # class CustomerProfile(models.Model):
 #     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='customer_profile')
