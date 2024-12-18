@@ -6,7 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import CustomerProfileSignUpForm
+from .forms import CustomerProfileSignUpForm, CustomerProfileUpdateForm
+from .models import CustomerProfile
 
 # Create your views here.
 
@@ -66,10 +67,17 @@ def signUpUser(request):
     # context = {'page': page, 'form': form}
     # return render(request, 'login.html', context)
 
+
+@login_required(login_url='login')
+def editUser(request):
+    form = CustomerProfileUpdateForm()
+    context = {'form': form}
+    return render(request, 'users-profile.html', context=context)
+
 @login_required(login_url='login')
 def usersProfile(request):
-    form = UserCreationForm()
-    context = {'form': form}
+    customer_profile, created = CustomerProfile.objects.get_or_create(user=request.user)
+    context = {'customer_profile': customer_profile}
     return render(request, 'users-profile.html', context)
 
 def saProfile(request):

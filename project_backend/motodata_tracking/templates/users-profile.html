@@ -21,31 +21,29 @@
             <div class="info-view">
                 <div class="info-item">
                     <label>Full Name</label>
-                    <p>John Doe</p>
+                    <p>{{ request.user.first_name }} {{ request.user.last_name }}</p>
                 </div>
                 
                 <div class="info-item">
                     <label>Email Address</label>
-                    <p>john.doe@example.com</p>
+                    <p>{{ request.user.email }}</p>
                 </div>
                 
                 <div class="info-item">
                     <label>Phone Number</label>
-                    <p>+1 (555) 123-4567</p>
+                    <p>{{ customer_profile.phone_number|default:"N/A" }}</p>
                 </div>
                 
                 <div class="info-item">
                     <label>Address</label>
-                    <p>123 Main St, Anytown, ST 12345</p>
+                    <p>{{ customer_profile.address|default:"N/A"  }}</p>
                 </div>
             </div>
         </div>
 
-        <form method="POST" action="" class="info-form" style="display: none;" onsubmit="saveChanges(event)">
+        <form method="POST" action="{% url 'edit' %}" class="info-form" style="display: none;" onsubmit="saveChanges(event)">
             {% csrf_token %}
             {{ form.as_p }}
-            
-           
         </form>
 
         <div class="linked-vehicles card">
