@@ -78,11 +78,12 @@ def usersProfile(request):
         edit_form = CustomerProfileUpdateForm(request.POST, instance=profile, user=request.user)
 
         if edit_form.is_valid():
+            print('Form submitted')
             edit_form.save(user=request.user)
 
             return redirect('profile')
         else:
-            messages.error(request, 'An error occured during 0registration')
+            messages.error(request, 'An error occured during registration')
     else:
         edit_form = CustomerProfileUpdateForm(instance=profile, user=request.user)
         
