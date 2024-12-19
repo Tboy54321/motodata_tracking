@@ -24,10 +24,40 @@ class CustomerProfileSignUpForm(UserCreationForm):
                 address=self.cleaned_data['address']
             )
         return user
-    
-class CustomerProfileUpdateForm(ModelForm):
+
+
+class CustomerProfileUpdateForm(forms.ModelForm):
+    # Include fields from the User model
+    first_name = forms.CharField(max_length=100, required=True)
+    last_name = forms.CharField(max_length=100, required=True)
+    email = forms.EmailField(required=True)
+    username = forms.CharField(max_length=150, required=True)
+
     class Meta:
         model = CustomerProfile
-        fields = ['first_name', 'last_name' , 'username', 'email', 'phone_number', 'address']
-    
-    
+        fields = ['phone_number', 'address']  # Fields from CustomerProfile
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['first_name'].initial = user.first_name
+            self.fields['last_name'].initial = user.last_name
+            self.fields['email'].initial = user.email
+            self.fields['username'].initial = user.username
+
+    def save(self, user=None, commit=True):
+        customer_profile = super().save(commit=False)
+
+        # Update User model fields
+        if user:
+            user.first_name = self.cleaned_data['first_name']
+            user.last_name = self.cleaned_data['last_name']
+            user.email = self.cleaned_data['email']
+            user.username = self.cleaned_data['username']
+            user.save()
+
+        if commit:
+            customer_profile.save()
+
+        return customer_profile

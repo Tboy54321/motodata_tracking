@@ -69,15 +69,24 @@ def signUpUser(request):
 
 
 @login_required(login_url='login')
-def editUser(request):
-    form = CustomerProfileUpdateForm()
-    context = {'form': form}
-    return render(request, 'users-profile.html', context=context)
-
-@login_required(login_url='login')
 def usersProfile(request):
     customer_profile, created = CustomerProfile.objects.get_or_create(user=request.user)
-    context = {'customer_profile': customer_profile}
+    profile = request.user.customerprofile
+    edit_form = CustomerProfileUpdateForm(instance=profile)
+
+    if request.method == 'POST':
+        edit_form = CustomerProfileUpdateForm(request.POST, instance=profile, user=request.user)
+
+        if edit_form.is_valid():
+            edit_form.save(user=request.user)
+
+            return redirect('profile')
+        else:
+            messages.error(request, 'An error occured during 0registration')
+    else:
+        edit_form = CustomerProfileUpdateForm(instance=profile, user=request.user)
+        
+    context = {'customer_profile': customer_profile, 'edit_form': edit_form}
     return render(request, 'users-profile.html', context)
 
 def saProfile(request):

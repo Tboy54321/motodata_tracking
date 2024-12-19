@@ -41,9 +41,13 @@
             </div>
         </div>
 
-        <form method="POST" action="{% url 'edit' %}" class="info-form" style="display: none;" onsubmit="saveChanges(event)">
+        <form method="POST" action="{% url 'profile' %}" class="info-form" style="display: none;" onsubmit="saveChanges(event)">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ edit_form.as_p }}
+
+            <input type="submit">
+                
+            </input>
         </form>
 
         <div class="linked-vehicles card">
