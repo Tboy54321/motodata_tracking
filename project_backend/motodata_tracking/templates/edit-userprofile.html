@@ -1,0 +1,21 @@
+{% extends 'user-main.html' %}
+{% load static %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/users-profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <form method="POST" action="{% url 'prof' %}" class="info-form" onsubmit="saveChanges(event)">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+    
+        <input type="submit">
+            
+        </input>
+    </form>
+</div>
+
+{% endblock content %}

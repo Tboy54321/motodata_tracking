@@ -78,12 +78,11 @@ def usersProfile(request):
         edit_form = CustomerProfileUpdateForm(request.POST, instance=profile, user=request.user)
 
         if edit_form.is_valid():
-            print('Form submitted')
             edit_form.save(user=request.user)
 
             return redirect('profile')
         else:
-            messages.error(request, 'An error occured during registration')
+            messages.error(request, 'An error occured during 0registration')
     else:
         edit_form = CustomerProfileUpdateForm(instance=profile, user=request.user)
         
@@ -92,3 +91,23 @@ def usersProfile(request):
 
 def saProfile(request):
     return render(request, 'sa-profile.html')
+
+@login_required(login_url='login')
+def userEditProfile(request):
+    profile = request.user.customerprofile
+    edit_form = CustomerProfileUpdateForm(instance=profile)
+
+    if request.method == 'POST':
+        edit_form = CustomerProfileUpdateForm(request.POST, instance=profile, user=request.user)
+
+        if edit_form.is_valid():
+            edit_form.save(user=request.user)
+
+            return redirect('profile')
+        else:
+            messages.error(request, 'An error occured during 0registration')
+    else:
+        edit_form = CustomerProfileUpdateForm(instance=profile, user=request.user)
+        
+    context = {'edit_form': edit_form}
+    return render(request, 'edit-userprofile.html', context)
