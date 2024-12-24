@@ -43,7 +43,7 @@ def logoutUser(request):
     return redirect('login')
 
 def signUpUser(request):
-    page = 'signup'
+    page = 'signupUser'
 
     if request.user.is_authenticated:
         return redirect('profile')
@@ -52,6 +52,7 @@ def signUpUser(request):
         form = CustomerProfileSignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
+            CustomerProfile.objects.create(user=user, role='customer')
             login(request, user)
             return redirect('profile')
             
@@ -82,15 +83,12 @@ def usersProfile(request):
 
             return redirect('profile')
         else:
-            messages.error(request, 'An error occured during 0registration')
+            messages.error(request, 'An error occured during registration')
     else:
         edit_form = CustomerProfileUpdateForm(instance=profile, user=request.user)
         
     context = {'customer_profile': customer_profile, 'edit_form': edit_form}
     return render(request, 'users-profile.html', context)
-
-def saProfile(request):
-    return render(request, 'sa-profile.html')
 
 @login_required(login_url='login')
 def userEditProfile(request):
@@ -111,3 +109,30 @@ def userEditProfile(request):
         
     context = {'edit_form': edit_form}
     return render(request, 'edit-userprofile.html', context)
+
+def signupSA(request):
+    page = 'signupSA'
+
+    if request.user.is_authenticated:
+        return redirect('sa-profile')
+    
+    if request.method == 'POST':
+        form = CustomerProfileSignUpForm(request.POST)
+        if form.is_valid:
+            user = form.save()
+            CustomerProfile.objects.create(user=user, role='service_adviser')
+            login(request, user)
+            return redirect('profile')
+        else:
+            messages.success(request, 'An error has occurred during regisration')
+    else:
+        form = CustomerProfileSignUpForm()
+
+    context = {'form': form, 'page': page}
+    return render(request, 'login.html', context)
+
+def saProfile(request):
+    return render(request, 'sa-profile.html')
+
+def home(request):
+    return render (request, 'home.html')

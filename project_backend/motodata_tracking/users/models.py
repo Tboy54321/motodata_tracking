@@ -14,7 +14,12 @@ from django.contrib.auth.models import AbstractUser, User
 #         return self.email
     
 class CustomerProfile(models.Model):
+    ROLE_CHOICE = [
+        ('customer', 'Customer'),
+        ('service_adviser', 'Service Adviser'),
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name='customerprofile')
+    role = models.CharField(max_length=20, choices=ROLE_CHOICE, default='customer')
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     address = models.TextField(max_length=100, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
