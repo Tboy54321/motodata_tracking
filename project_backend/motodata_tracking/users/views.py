@@ -6,12 +6,25 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import CustomerProfileSignUpForm, CustomerProfileUpdateForm
+from django.http import HttpResponseForbidden
+from functools import wraps
+from .forms import CustomerProfileSignUpForm, CustomerProfileUpdateForm, SAProfileSignUpForm, SAProfileUpdateForm
 from .models import CustomerProfile
+
+
+def role_required(required_role):
+    def decorator(view_func):
+        @wraps(view_func)
+        def _wrapped_view(request, *args, **kwargs):
+            if request.user.is_authenticated and request.user.customerprofile.role == required_role:
+                return view_func(request, *args, **kwargs)
+            return HttpResponseForbidden("You do not have permission to access this page.")
+        return _wrapped_view
+    return decorator
 
 # Create your views here.
 
-def loginUser(request):
+def loginAccount(request):
     page = 'login'
 
     if request.user.is_authenticated:
@@ -30,17 +43,31 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profile')
+            if request.user.customerprofile.role == 'customer':
+                return redirect('profile')
+            elif request.user.customerprofile.role == 'service_adviser':
+                return redirect('sa-profile')
         else:
             messages.error(request, 'username or password is incorrect')
 
     context = {'page': page}
     return render(request, 'login.html', context)
 
-def logoutUser(request):
+def logoutAccount(request):
     logout(request)
     messages.error(request, 'User successfully logged out')
     return redirect('login')
+
+def deleteAccount(request):
+    
+    if request.method == 'POST':
+        user = request.user
+
+        user.delete()
+        messages.success(request, 'Account deleted successfuly')
+        return redirect('login')
+    
+    return render(request, 'delete-account.html')
 
 def signUpUser(request):
     page = 'signupUser'
@@ -52,7 +79,9 @@ def signUpUser(request):
         form = CustomerProfileSignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            CustomerProfile.objects.create(user=user, role='customer')
+            customer_profile = user.customerprofile
+            customer_profile.role = 'customer'
+            customer_profile.save()
             login(request, user)
             return redirect('profile')
             
@@ -70,6 +99,7 @@ def signUpUser(request):
 
 
 @login_required(login_url='login')
+@role_required('customer')
 def usersProfile(request):
     customer_profile, created = CustomerProfile.objects.get_or_create(user=request.user)
     profile = request.user.customerprofile
@@ -83,7 +113,7 @@ def usersProfile(request):
 
             return redirect('profile')
         else:
-            messages.error(request, 'An error occured during registration')
+            messages.error(request, 'An error occured during update')
     else:
         edit_form = CustomerProfileUpdateForm(instance=profile, user=request.user)
         
@@ -91,6 +121,7 @@ def usersProfile(request):
     return render(request, 'users-profile.html', context)
 
 @login_required(login_url='login')
+@role_required('customer')
 def userEditProfile(request):
     profile = request.user.customerprofile
     edit_form = CustomerProfileUpdateForm(instance=profile)
@@ -110,6 +141,7 @@ def userEditProfile(request):
     context = {'edit_form': edit_form}
     return render(request, 'edit-userprofile.html', context)
 
+
 def signupSA(request):
     page = 'signupSA'
 
@@ -117,22 +149,44 @@ def signupSA(request):
         return redirect('sa-profile')
     
     if request.method == 'POST':
-        form = CustomerProfileSignUpForm(request.POST)
-        if form.is_valid:
+        form = SAProfileSignUpForm(request.POST)
+        if form.is_valid():
             user = form.save()
-            CustomerProfile.objects.create(user=user, role='service_adviser')
+            customer_profile = user.customerprofile
+            customer_profile.role = 'service_adviser'
+            customer_profile.save()
             login(request, user)
-            return redirect('profile')
+            return redirect('sa-profile')
         else:
             messages.success(request, 'An error has occurred during regisration')
     else:
-        form = CustomerProfileSignUpForm()
+        form = SAProfileSignUpForm()
 
     context = {'form': form, 'page': page}
     return render(request, 'login.html', context)
 
+# NOT YET IMPLEMENTED
+@login_required(login_url='login')
+@role_required('service_adviser')
 def saProfile(request):
-    return render(request, 'sa-profile.html')
+    sa_profile, created = CustomerProfile.objects.get_or_create(user=request.user)
+    profile = request.user.customerprofile
+    edit_form = SAProfileUpdateForm(instance=profile)
+
+    if request.method == 'POST':
+        edit_form = SAProfileUpdateForm(request.POST, instance=profile, user=request.user)
+
+        if edit_form.is_valid():
+            edit_form.save(user=request.user)
+
+            return redirect('sa-profile')
+        else:
+            messages.error(request, 'An error occured during update')
+    else:
+        edit_form = SAProfileUpdateForm(instance=profile, user=request.user)
+
+    context = {'sa_profile': sa_profile, 'edit_form': edit_form}
+    return render(request, 'sa-profile.html', context)
 
 def home(request):
     return render (request, 'home.html')

@@ -64,7 +64,9 @@
             </form>
 
             <div class="login-footer">
-                <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+                <p>Don't have an account?</p>
+                <p>Sign up as Customer <a href="{% url 'signupUser' %}">Sign Up</a></p>
+                <p>Sign up as Service Adviser <a href="{% url 'signupSA' %}">Sign Up</a></p>
             </div>
         </div>
     </div>
@@ -91,7 +93,7 @@
                 <p>Create your user account to get started</p>
             </div>
 
-            <form method="POST" action="{% url 'signup' %}" class="signup-form">
+            <form method="POST" action="{% url 'signupUser' %}" class="signup-form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" class="auth-button">
@@ -190,7 +192,7 @@
                 <p>Create your Service Adviser account to get started</p>
             </div>
 
-            <form method="POST" action="{% url 'signup' %}" class="signup-form">
+            <form method="POST" action="{% url 'signupSA' %}" class="signup-form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" class="auth-button">

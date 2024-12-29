@@ -26,7 +26,7 @@
                 <label>Full Name</label>
                 <div class="info-value">
                     <i class="fas fa-user"></i>
-                    <span>Michael Anderson</span>
+                    <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
                 <label>Email Address</label>
                 <div class="info-value">
                     <i class="fas fa-envelope"></i>
-                    <span>michael.anderson@mototrack.com</span>
+                    <span>{{ request.user.email }}</span>
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
                 <label>Phone Number</label>
                 <div class="info-value">
                     <i class="fas fa-phone"></i>
-                    <span>+1 (555) 234-5678</span>
+                    <span>{{ sa_profile.phone_number|default:"NA" }}</span>
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
                 <label>Join Date</label>
                 <div class="info-value">
                     <i class="fas fa-calendar"></i>
-                    <span>Jan 2020</span>
+                    <span>{{ sa_profile.created|date:"Y-m-d" }}</span>
                 </div>
             </div>
         </div>
