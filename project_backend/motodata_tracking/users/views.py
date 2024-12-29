@@ -211,3 +211,5 @@ def saEditProfile(request):
 
 def home(request):
     return render (request, 'home.html')
+
+# UPDATE PASSWORD USING MAIL
