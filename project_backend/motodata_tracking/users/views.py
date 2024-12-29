@@ -188,5 +188,26 @@ def saProfile(request):
     context = {'sa_profile': sa_profile, 'edit_form': edit_form}
     return render(request, 'sa-profile.html', context)
 
+@login_required(login_url='login')
+@role_required('service_adviser')
+def saEditProfile(request):
+    profile = request.user.customerprofile
+    edit_form = SAProfileUpdateForm(instance=profile)
+
+    if request.method == 'POST':
+        edit_form = SAProfileUpdateForm(request.POST, instance=profile, user=request.user)
+
+        if edit_form.is_valid():
+            edit_form.save(user=request.user)
+
+            return redirect('sa-profile')
+        else:
+            messages.error(request, 'An error occured during registration')
+    else:
+        edit_form = SAProfileUpdateForm(instance=profile, user=request.user)
+        
+    context = {'edit_form': edit_form}
+    return render(request, 'edit-saprofile.html', context)
+
 def home(request):
     return render (request, 'home.html')

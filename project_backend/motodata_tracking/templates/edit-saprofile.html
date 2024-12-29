@@ -8,7 +8,7 @@
 
 {% block content %}
 <div>
-    <form method="POST" action="{% url 'edit-user' %}" class="info-form" onsubmit="saveChanges(event)">
+    <form method="POST" action="{% url 'edit-profile' %}" class="info-form" onsubmit="saveChanges(event)">
         {% csrf_token %}
         {{ edit_form.as_p }}
     
