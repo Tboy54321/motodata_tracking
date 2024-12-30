@@ -1,6 +1,4 @@
 from django.shortcuts import render, redirect
-# from .models import CustomerProfile
-# from .forms import CustomerForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required

@@ -122,7 +122,6 @@ class SAProfileUpdateForm(forms.ModelForm):
     def save(self, user=None, commit=True):
         customer_profile = super().save(commit=False)
 
-        # Update User model fields
         if user:
             user.first_name = self.cleaned_data['first_name']
             user.last_name = self.cleaned_data['last_name']
