@@ -72,16 +72,18 @@
         <h3>Active Repairs</h3>
         <div class="repairs-grid">
             <!-- Toyota Camry Card -->
-            <a href="{% url 'vehicles-details' %}" class="repair-card">
-                <h4>Toyota Camry 2020</h4>
-                <span class="status-badge in-progress">In Progress</span>
+            {% for vehicle in vehicles %}
+
+            <a href="{% url 'vehicles-details' vehicle.id %}" class="repair-card">
+                <h4>{{ vehicle.make }} {{ vehicle.year }}</h4>
+                <span class="status-badge in-progress">{{ vehicle.status }}</span>
                 
                 <div class="repair-details">
                     <div class="detail-item">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                         </svg>
-                        Started: Mar 15, 2024
+                        {{ vehicle.created_at }}
                     </div>
                     <div class="detail-item">
                         <svg class="icon" viewBox="0 0 24 24">
@@ -108,79 +110,7 @@
                 </div>
             </a>
 
-            <!-- Honda Civic Card -->
-            <div class="repair-card">
-                <h4>Honda Civic 2021</h4>
-                <span class="status-badge pending">Pending</span>
-                
-                <div class="repair-details">
-                    <div class="detail-item">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        Started: Mar 16, 2024
-                    </div>
-                    <div class="detail-item">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        Est. Completion: Mar 19, 2024
-                    </div>
-                    <div class="detail-item">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                        </svg>
-                        Awaiting Parts
-                    </div>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress-label">
-                        <span>Progress</span>
-                        <span>25%</span>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 25%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ford F-150 Card -->
-            <div class="repair-card">
-                <h4>Ford F-150 2019</h4>
-                <span class="status-badge in-progress">In Progress</span>
-                
-                <div class="repair-details">
-                    <div class="detail-item">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        Started: Mar 14, 2024
-                    </div>
-                    <div class="detail-item">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        Est. Completion: Mar 17, 2024
-                    </div>
-                    <div class="detail-item">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                        </svg>
-                        Engine Diagnostics
-                    </div>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress-label">
-                        <span>Progress</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 80%"></div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 </main>

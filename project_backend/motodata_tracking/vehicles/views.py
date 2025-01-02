@@ -1,15 +1,22 @@
 from django.shortcuts import render
+from .models import Vehicle
 
 # Create your views here.
 
 def userDashboard(request):
-    return render(request, 'vehicle-dashboard.html')
+    vehicles = Vehicle.objects.all()
+    context = {'vehicles': vehicles}
+    return render(request, 'vehicle-dashboard.html', context)
 
 def userVehiclesPage(request):
-    return render(request, 'vehicle-page.html')
+    vehicles = Vehicle.objects.all()
+    context = {'vehicles': vehicles}
+    return render(request, 'vehicle-page.html', context)
 
-def userVehiclesDetails(request):
-    return render(request, 'vehicle-details.html')
+def userVehiclesDetails(request, pk):
+    vehicle = Vehicle.objects.get(id=pk)
+    context = {'vehicle': vehicle}
+    return render(request, 'vehicle-details.html', context)
 
 def saVehiclesManagement(request):
     return render(request, 'sa-vehicle-management.html')

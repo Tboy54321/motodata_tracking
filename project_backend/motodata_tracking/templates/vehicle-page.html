@@ -20,13 +20,14 @@
     <!-- Vehicle Cards -->
     <div class="vehicle-list">
         <!-- Toyota Camry Card -->
+        {% for vehicle in vehicles %}
         <div class="vehicle-card">
             <div class="vehicle-icon">🚗</div>
             <div class="vehicle-info">
-                <h2>2020 Toyota Camry</h2>
+                <h2>{{ vehicle.year }} {{ vehicle.make }}</h2>
                 <div class="vehicle-details">
-                    <p>License Plate: ABC 123</p>
-                    <p>VIN: 1HGCM82633A123456</p>
+                    <p>License Plate: {{ vehicle.plate }}</p>
+                    <p>VIN: {{ vehicle.vin }}</p>
                 </div>
                 
                 <div class="service-alerts">
@@ -40,7 +41,7 @@
                 <div class="service-status">
                     <div class="status-info">
                         <span>Last Service: Mar 15, 2024</span>
-                        <span class="status-badge in-progress">In Progress</span>
+                        <span class="status-badge in-progress">{{ vehicle.status }}</span>
                     </div>
                     <div class="next-service">
                         Next service due: Sep 15, 2024
@@ -49,55 +50,8 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
 
-        <div class="vehicle-card">
-            <div class="vehicle-icon">🚗</div>
-            <div class="vehicle-info">
-                <h2>2020 Range Rover</h2>
-                <div class="vehicle-details">
-                    <p>License Plate: SLC 123</p>
-                    <p>VIN: 1HGCM82633A123456</p>
-                </div>
-                
-                <div class="service-alerts">
-                    <h3>Service Alerts</h3>
-                    <ul>
-                        <li>Oil change recommended</li>
-                        <li>Brake inspection due</li>
-                    </ul>
-                </div>
-                
-                <div class="service-status">
-                    <div class="status-info">
-                        <span>Last Service: Mar 15, 2024</span>
-                        <span class="status-badge in-progress">In Progress</span>
-                    </div>
-                    <div class="next-service">
-                        Next service due: Sep 15, 2024
-                        <a href="#" class="view-history">View Service History</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Honda Civic Card -->
-        <div class="vehicle-card">
-            <div class="vehicle-icon">🚗</div>
-            <div class="vehicle-info">
-                <h2>2021 Honda Civic</h2>
-                <div class="vehicle-details">
-                    <p>License Plate: XYZ 789</p>
-                    <p>VIN: 2HGES16575H123456</p>
-                </div>
-                
-                <div class="service-status">
-                    <div class="status-info">
-                        <span>Last Service: Feb 28, 2024</span>
-                        <span class="status-badge completed">Completed</span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </main>
 {% endblock %}

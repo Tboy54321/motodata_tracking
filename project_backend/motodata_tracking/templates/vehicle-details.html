@@ -12,11 +12,13 @@
         <div class="vehicle-info">
             <div class="vehicle-icon">🚗</div>
             <div>
-                <h1>2020 Toyota Camry</h1>
+                {% for vehicle in vehicles %}
+                <h1>{{ vehicle.year }} {{ vehicle.make }}</h1>
                 <div class="vehicle-meta">
-                    <span>License Plate: ABC 123</span>
-                    <span>VIN: 1HGCM82633A123456</span>
+                    <span>License Plate: {{ vehicle.plate }}</span>
+                    <span>VIN: {{ vehicle.vin }}</span>
                 </div>
+                {% endfor %}
             </div>
         </div>
         <span class="status-badge">In Progress</span>
@@ -26,7 +28,7 @@
         <div class="main-section">
             <div class="card">
                 <h2>Current Condition</h2>
-                <p>Vehicle is undergoing scheduled maintenance. All systems are operational, with brake system being serviced.</p>
+                <p>{{ vehicle.condition }}</p>
             </div>
 
             <div class="card">
@@ -35,7 +37,7 @@
                     <div class="progress-info">
                         <div class="progress-detail">
                             <span>Technician: Mike Johnson</span>
-                            <span>Start Date: Mar 15, 2024</span>
+                            <span>Start Date: {{ vehicle.created_at }}</span>
                             <span>Expected Completion: Mar 18, 2024</span>
                             <span>Service Type: Brake System Maintenance and General Service</span>
                         </div>

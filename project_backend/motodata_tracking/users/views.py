@@ -51,11 +51,13 @@ def loginAccount(request):
     context = {'page': page}
     return render(request, 'login.html', context)
 
+@login_required(login_url='login')
 def logoutAccount(request):
     logout(request)
     messages.error(request, 'User successfully logged out')
     return redirect('login')
 
+@login_required(login_url='login')
 def deleteAccount(request):
     
     if request.method == 'POST':
