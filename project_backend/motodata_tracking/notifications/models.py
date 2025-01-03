@@ -1,6 +1,6 @@
 # from django.db import models
 # from django.conf import settings
-# from ..vehicles import JobCard
+# from vehicles.models import JobCard
 
 # # Create your models here.
 # class Notification(models.Model):

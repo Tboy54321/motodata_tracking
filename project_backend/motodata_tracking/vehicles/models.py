@@ -12,7 +12,8 @@ class Vehicle(models.Model):
     plate = models.CharField(max_length=50)
     year = models.PositiveIntegerField()
     color = models.CharField(max_length=50)
-    condition = models.TextField()
+    condition = models.TextField(max_length=500)
+    concern = models.TextField(default='None' ,max_length=1000)
     status = models.CharField(
         max_length=50,
         choices=[
@@ -22,6 +23,9 @@ class Vehicle(models.Model):
         ],
         default='Pending'
     )
+    tasks = models.JSONField(default=list)
+    # NEED TO ALLOW THE SERVICE ADVISER TO GET TO ADD THE TASK AND UPDATE THE STATUS
+    progress = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

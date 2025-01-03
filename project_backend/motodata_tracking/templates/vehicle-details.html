@@ -21,7 +21,7 @@
                 {% endfor %}
             </div>
         </div>
-        <span class="status-badge">In Progress</span>
+        <span class="status-badge">{{ vehicle.status }}</span>
     </div>
 
     <div class="content-grid">
@@ -36,43 +36,29 @@
                     <h2>Current Job Progress</h2>
                     <div class="progress-info">
                         <div class="progress-detail">
-                            <span>Technician: Mike Johnson</span>
                             <span>Start Date: {{ vehicle.created_at }}</span>
-                            <span>Expected Completion: Mar 18, 2024</span>
-                            <span>Service Type: Brake System Maintenance and General Service</span>
+                            <span>Vehiicle concern: {{ vehicle.concern }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress" style="width: 65%"></div>
+                    <div class="progress" style="width: {{ vehicle.progress }}%"></div>
                 </div>
                 <div class="task-list">
                     <h3>Task Breakdown</h3>
-                    <div class="task-item completed">
-                        <span class="task-icon">✓</span>
-                        <span class="task-name">Initial Inspection</span>
-                        <span class="task-status">Completed</span>
-                    </div>
-                    <div class="task-item completed">
-                        <span class="task-icon">✓</span>
-                        <span class="task-name">Brake Pad Replacement</span>
-                        <span class="task-status">Completed</span>
-                    </div>
-                    <div class="task-item in-progress">
-                        <span class="task-icon">🔄</span>
-                        <span class="task-name">Rotor Inspection</span>
-                        <span class="task-status">In-progress</span>
-                    </div>
-                    <div class="task-item pending">
-                        <span class="task-icon">⭕</span>
-                        <span class="task-name">Fluid Check</span>
-                        <span class="task-status">Pending</span>
-                    </div>
-                    <div class="task-item pending">
-                        <span class="task-icon">⭕</span>
-                        <span class="task-name">Test Drive</span>
-                        <span class="task-status">Pending</span>
-                    </div>
+                    {% for task in vehicle.tasks %}
+                        <div class="task-item {{ task.status|lower }}">
+                            {% if task.status == "Completed" %}
+                                <span class="task-icon">✓</span>
+                            {% elif task.status == "In Progress" %}
+                                <span class="task-icon">🔄</span>
+                            {% else %}
+                                <span class="task-icon">⭕</span>
+                            {% endif %}
+                            <span class="task-name">{{ task.name }}</span>
+                            <span class="task-status">{{ task.status }}</span>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
 

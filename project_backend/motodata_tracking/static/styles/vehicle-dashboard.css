@@ -183,12 +183,12 @@
     margin-bottom: 1rem;
 }
 
-.status-badge.in-progress {
+.status-badge.In-progress {
     background-color: #eff6ff;
     color: #1d4ed8;
 }
 
-.status-badge.pending {
+.status-badge.Pending {
     background-color: #fef3c7;
     color: #b45309;
 }
