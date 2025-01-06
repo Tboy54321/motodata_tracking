@@ -1,14 +1,30 @@
-# from django.db import models
-# from django.conf import settings
-# from vehicles.models import JobCard
+from django.db import models
+from django.conf import settings
+from vehicles.models import Tasks, Vehicle
 
-# # Create your models here.
-# class Notification(models.Model):
-#     recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="notifications")
-#     job_card = models.ForeignKey(JobCard, on_delete=models.CASCADE, related_name="notifications")
-#     message = models.TextField()
-#     is_read = models.BooleanField(default=False)
-#     created_at = models.DateTimeField(auto_now_add=True)
+# Create your models here.
 
-#     def __str__(self):
-#         return f"Notification for {self.recipient.username}: {self.message[:50]}"
+READ_RECEIPT = [
+    ('Read', 'Read'),
+    ('Unread', 'Unread')
+]
+
+class Notification(models.Model):
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="notifications")
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name='vehicles')
+    title = models.CharField(max_length=200)
+    notification_type = models.CharField(
+        max_length=50,
+        choices=[
+            ('Job Update', 'Job Update'),
+            ('Alert', 'Alert'),
+            ('Service Completion', 'Service Completion'),
+            ('General Information', 'General Information'),
+        ],
+    )
+    status = models.CharField(max_length=10, choices=READ_RECEIPT, default='Unread')
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Notification for {self.customer.username}: {self.message[:50]}"

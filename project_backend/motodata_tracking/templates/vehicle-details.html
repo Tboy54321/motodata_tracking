@@ -46,7 +46,7 @@
                 </div>
                 <div class="task-list">
                     <h3>Task Breakdown</h3>
-                    {% for task in vehicle.tasks %}
+                    {% for task in tasks %}
                         <div class="task-item {{ task.status|lower }}">
                             {% if task.status == "Completed" %}
                                 <span class="task-icon">✓</span>

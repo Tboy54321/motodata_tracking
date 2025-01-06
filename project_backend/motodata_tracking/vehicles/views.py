@@ -23,7 +23,8 @@ def userVehiclesPage(request):
 @role_required('customer')
 def userVehiclesDetails(request, pk):
     vehicle = Vehicle.objects.get(id=pk)
-    context = {'vehicle': vehicle}
+    tasks = vehicle.tasks.all()
+    context = {'vehicle': vehicle, 'tasks': tasks}
     return render(request, 'vehicle-details.html', context)
 
 

@@ -15,33 +15,23 @@
     <p class="subtitle">Stay updated with your vehicle service progress</p>
 
     <div class="notification-list">
-        <div class="notification-item">
-            <div class="notification-icon blue">⏱</div>
-            <div class="notification-content">
-                <h3>Repair Progress Update</h3>
-                <p>Brake system maintenance is 65% complete</p>
-                <p class="vehicle">Vehicle: Toyota Camry 2020</p>
+        {% for notification in notification_list %}
+        <a href="">
+            <div class="notification-item">
+                <div class="notification-icon blue">⏱</div>
+                <div class="notification-content">
+                    <h3>{{ notification.title }}</h3>
+                    <p>Brake system maintenance is {{notification.vehicle.progress}}% complete</p>
+                    <p class="vehicle">{{notification.vehicle.make}} {{notification.vehicle.model}} {{notification.vehicle.year}}</p>
+                </div
+                <div class="notification-meta">
+                    <span class="time">{{notification.created_at|timesince}} ago</span>
+                    <span class="status-dot blue"></span>
+                    <span class="arrow">›</span>
+                </div>
             </div>
-            <div class="notification-meta">
-                <span class="time">2 hours ago</span>
-                <span class="status-dot blue"></span>
-                <span class="arrow">›</span>
-            </div>
-        </div>
-
-        <div class="notification-item">
-            <div class="notification-icon yellow">⚠</div>
-            <div class="notification-content">
-                <h3>Parts Arrival Notice</h3>
-                <p>Required parts have arrived and installation will begin shortly</p>
-                <p class="vehicle">Vehicle: Honda Civic 2021</p>
-            </div>
-            <div class="notification-meta">
-                <span class="time">3 hours ago</span>
-                <span class="status-dot yellow"></span>
-                <span class="arrow">›</span>
-            </div>
-        </div>
+        </a>
+        {% endfor %}
 
         <div class="notification-item">
             <div class="notification-icon green">✓</div>
@@ -56,18 +46,6 @@
             </div>
         </div>
 
-        <div class="notification-item">
-            <div class="notification-icon purple">🔧</div>
-            <div class="notification-content">
-                <h3>New Task Started</h3>
-                <p>Technician has begun working on transmission inspection</p>
-                <p class="vehicle">Vehicle: Toyota Camry 2020</p>
-            </div>
-            <div class="notification-meta">
-                <span class="time">1 day ago</span>
-                <span class="arrow">›</span>
-            </div>
-        </div>
     </div>
 </div>
 {% endblock content %}
