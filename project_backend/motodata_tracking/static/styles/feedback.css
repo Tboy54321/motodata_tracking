@@ -146,3 +146,29 @@ textarea {
         padding: 16px;
     }
 }
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff1a1a;
+}
+
+.feedback-item {
+    position: relative; /* Add this to position the delete button inside the card */
+}

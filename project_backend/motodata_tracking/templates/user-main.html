@@ -37,7 +37,7 @@
             <header>
                 <div class="user-info">
                     <a href="{% url 'notifcations' %}"><span class="notification-icon">🔔</span></a>
-                    <span class="user-name">John Doe</span>
+                    <span class="user-name">{{request.user.username}}</span>
                     <a href="{% url 'profile' %}"><span class="user-avatar">👤</span></a>
                 </div>
             </header>

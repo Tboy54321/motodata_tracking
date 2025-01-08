@@ -12,28 +12,32 @@
     <p class="subtitle">Share your experience with our service</p>
 
     <div class="feedback-form card">
-        <div class="rating-section">
-            <h3>Rate your experience</h3>
-            <div class="star-rating">
-                <span class="star">☆</span>
-                <span class="star">☆</span>
-                <span class="star">☆</span>
-                <span class="star">☆</span>
-                <span class="star">☆</span>
+        <form method="POST" action="{% url 'create-feedback' %}">
+            {% csrf_token %}
+            <div class="rating-section">
+                <h3>Rate your experience</h3>
+                <div class="star-rating" id="rating-section">
+                    <input type="hidden" name="rating" id="rating-input">
+                    <span class="star" data-value="1">☆</span>
+                    <span class="star" data-value="2">☆</span>
+                    <span class="star" data-value="3">☆</span>
+                    <span class="star" data-value="4">☆</span>
+                    <span class="star" data-value="5">☆</span>
+                </div>
             </div>
-        </div>
-
-        <div class="feedback-input">
-            <h3>Your feedback</h3>
-            <textarea placeholder="Share your experience with our service..."></textarea>
-        </div>
-
-        <button class="submit-btn">Submit Feedback</button>
+            <div class="feedback-input">
+                <h3>Your feedback</h3>
+                <textarea name="comment" placeholder="Share your experience with our service..."></textarea>
+            </div>
+    
+            <button class="submit-btn">Submit Feedback</button>
+        </form>
     </div>
 
     <div class="previous-feedback">
-        <h2>Your Previous Feedback</h2>
+        <h2>Previous Feedbacks</h2>
         
+        {% for feedback in feedbacks %}
         <div class="feedback-item card">
             <div class="feedback-header">
                 <div class="star-rating filled">
@@ -43,36 +47,17 @@
                     <span class="star">★</span>
                     <span class="star">★</span>
                 </div>
-                <span class="feedback-date">Mar 15, 2024</span>
+                <span class="feedback-date">{{ feedback.created_at|date:"M d, Y" }}</span>
+                
             </div>
-            <p class="feedback-text">Excellent service! The team was very professional and completed the work ahead of schedule.</p>
-            <div class="service-details">
-                <span class="service-type">Brake System Maintenance</span>
-                <span class="vehicle-info">2020 Toyota Camry</span>
-            </div>
+            <p class="feedback-text">{{ feedback.comment }}</p>
+            
             <div class="service-response">
                 <h4>Response from Service Team</h4>
                 <p>Thank you for your kind feedback! We're glad we could exceed your expectations.</p>
             </div>
         </div>
-
-        <div class="feedback-item card">
-            <div class="feedback-header">
-                <div class="star-rating filled">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">☆</span>
-                </div>
-                <span class="feedback-date">Jan 20, 2024</span>
-            </div>
-            <p class="feedback-text">Good service overall. Clear communication throughout the process.</p>
-            <div class="service-details">
-                <span class="service-type">Oil Change and Filter Replacement</span>
-                <span class="vehicle-info">2020 Toyota Camry</span>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
