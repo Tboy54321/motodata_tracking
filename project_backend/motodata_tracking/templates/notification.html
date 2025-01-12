@@ -7,6 +7,23 @@
 {% endblock styles %}
 
 {% block content %}
+<form class="search-bar" action="{% url 'notifcations' %}" method="get">
+    <div class="search-container">
+        <input
+            type="text"
+            placeholder="Search messages, vehicles, or repairs..." 
+            aria-label="Search"
+            name="search_query"
+            value="{{search_query}}"
+        />
+        <button type="submit">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1016.65 16.65z"/>
+            </svg>
+        </button>
+    </div>
+</form>
+
 <div class="notifications-container">
     <div class="notifications-header">
         <h1>Notifications</h1>
@@ -33,7 +50,7 @@
         </a>
         {% endfor %}
 
-        <div class="notification-item">
+        <!-- <div class="notification-item">
             <div class="notification-icon green">✓</div>
             <div class="notification-content">
                 <h3>Service Completed</h3>
@@ -44,8 +61,11 @@
                 <span class="time">1 day ago</span>
                 <span class="arrow">›</span>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>
+
+{% include 'pagination.html' with queryset=notification_list custom_range=custom_range %}
+
 {% endblock content %}

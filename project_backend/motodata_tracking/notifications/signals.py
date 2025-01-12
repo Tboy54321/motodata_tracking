@@ -36,7 +36,7 @@ def create_job_update_notification(sender, instance, created, **kwargs):
         Notification.objects.create(
             customer=instance.owner,
             vehicle=instance,
-            title=f"Update on your Vehicle - Repair in Progress",
+            title=f"Update on your Vehicle (Repair in Progress): {instance.make} {instance.model}",
             message=f"""
             Dear {instance.owner},
             

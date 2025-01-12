@@ -7,6 +7,21 @@
 {% endblock styles %}
 
 {% block content %}
+<form id="searchForm" class="search-bar" method="get" action="{% url 'vehicle-dashboard' %}">
+    <input 
+        type="text" 
+        placeholder="Search for a vehicle or job..." 
+        name="search_query"
+        aria-label="Search"
+        value="{{ search_query }}"
+    />
+    <button type="submit">
+        <svg class="icon" viewBox="0 0 24 24">
+            <path d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1016.65 16.65z"/>
+        </svg>
+    </button>
+</form>
+
 <main class="main-content">
     <header class="header">
         <div class="header-title">
@@ -114,4 +129,7 @@
         </div>
     </section>
 </main>
+
+{% include 'pagination.html' with queryset=vehicles custom_range=custom_range %}
+
 {% endblock content %}
