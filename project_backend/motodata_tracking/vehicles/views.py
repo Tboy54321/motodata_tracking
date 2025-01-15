@@ -39,9 +39,14 @@ def userVehiclesDetails(request, pk):
 @login_required(login_url='login')
 @role_required('service_adviser')
 def saVehiclesManagement(request):
-    return render(request, 'sa-vehicle-management.html')
+    vehicles = Vehicle.objects.filter(service_adviser=request.user)
+    context = {'vehicles': vehicles}
+    return render(request, 'sa-vehicle-management.html', context)
 
 @login_required(login_url='login')
 @role_required('service_adviser')
 def saDashboard(request):
-    return render(request, 'sa-dashboard.html')
+    vehicles = Vehicle.objects.filter(service_adviser=request.user).order_by('-created_at')[:3]
+    vehicle_count = Vehicle.objects.filter(service_adviser=request.user).count
+    context = {'vehicles': vehicles, "vehicle_count": vehicle_count}
+    return render(request, 'sa-dashboard.html', context)

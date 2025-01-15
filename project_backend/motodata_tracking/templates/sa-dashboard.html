@@ -16,7 +16,7 @@
             <div class="stat-content">
                 <div class="stat-info">
                     <h3>Active Jobs</h3>
-                    <span class="stat-number">8</span>
+                    <span class="stat-number">{{ vehicle_count }}</span>
                 </div>
                 <div class="stat-icon blue">⏱️</div>
             </div>
@@ -56,7 +56,7 @@
     <div class="active-vehicles-section">
         <div class="section-header">
             <h2>Active Vehicles</h2>
-            <a href="#" class="view-all">View All Vehicles</a>
+            <a href="{% url 'sa-vehicles-management' %}" class="view-all">View All Vehicles</a>
         </div>
 
         <div class="vehicles-table">
@@ -65,80 +65,33 @@
                 <div class="col">SERVICE DETAILS</div>
                 <div class="col">STATUS</div>
                 <div class="col">PROGRESS</div>
-                <div class="col">TECHNICIAN</div>
             </div>
 
+            {% for vehicle in vehicles %}
             <div class="table-row">
                 <div class="col customer-info">
                     <span class="car-icon">🚗</span>
                     <div>
-                        <p class="customer-name">John Doe</p>
-                        <p class="vehicle-info">2020 Toyota Camry</p>
+                        <p class="customer-name">{{ vehicle.owner.first_name }} {{ vehicle.owner.last_name }}</p>
+                        <p class="vehicle-info">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</p>
                     </div>
                 </div>
                 <div class="col service-info">
-                    <p class="service-name">Brake System Maintenance</p>
-                    <p class="service-date">Due: Mar 18, 2024</p>
+                    <p class="service-name">{{ vehicle.concern }}</p>
+                    <p class="service-date">Created: {{ vehicle.created_at|date:"M. d, Y" }}</p>
                 </div>
                 <div class="col">
-                    <span class="status in-progress">In Progress</span>
+                    <span class="status in-progress">{{ vehicle.status }}</span>
                 </div>
                 <div class="col">
                     <div class="progress-bar">
-                        <div class="progress" style="width: 65%"></div>
+                        <div class="progress" style="width: {{ vehicle.progress }}%"></div>
                     </div>
-                    <span class="progress-text">65%</span>
+                    <span class="progress-text">{{ vehicle.progress }}%</span>
                 </div>
-                <div class="col">Mike Johnson</div>
             </div>
+            {% endfor %}
 
-            <div class="table-row">
-                <div class="col customer-info">
-                    <span class="car-icon">🚗</span>
-                    <div>
-                        <p class="customer-name">Jane Smith</p>
-                        <p class="vehicle-info">2021 Honda Civic</p>
-                    </div>
-                </div>
-                <div class="col service-info">
-                    <p class="service-name">Oil Change</p>
-                    <p class="service-date">Due: Mar 19, 2024</p>
-                </div>
-                <div class="col">
-                    <span class="status pending">Pending</span>
-                </div>
-                <div class="col">
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%"></div>
-                    </div>
-                    <span class="progress-text">0%</span>
-                </div>
-                <div class="col">Sarah Wilson</div>
-            </div>
-
-            <div class="table-row">
-                <div class="col customer-info">
-                    <span class="car-icon">🚗</span>
-                    <div>
-                        <p class="customer-name">Robert Brown</p>
-                        <p class="vehicle-info">2019 Ford F-150</p>
-                    </div>
-                </div>
-                <div class="col service-info">
-                    <p class="service-name">Engine Diagnostics</p>
-                    <p class="service-date">Due: Mar 17, 2024</p>
-                </div>
-                <div class="col">
-                    <span class="status completed">Completed</span>
-                </div>
-                <div class="col">
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 100%"></div>
-                    </div>
-                    <span class="progress-text">100%</span>
-                </div>
-                <div class="col">David Chen</div>
-            </div>
         </div>
     </div>
 </div>

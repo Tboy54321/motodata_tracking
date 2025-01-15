@@ -14,7 +14,7 @@ def notifications(request):
     page = request.GET.get('page')
     results = 3
     # notification_list = Notification.objects.filter(customer=request.user)
-    search_query, notification_list = searchQuery(request)
+    search_query, notification_list = searchQuery(request, 'customer')
     custom_range, notification_list = paginatePage(notification_list, results, page)
 
     context = {'notification_list': notification_list, 'search_query': search_query,
@@ -24,4 +24,6 @@ def notifications(request):
 @login_required(login_url='login')
 @role_required('service_adviser')
 def saNotifications(request):
-    return render(request, 'sa-notification-management.html')
+    search_query, notification_list = searchQuery(request, user_type='service_adviser')
+    context = {"notification_list": notification_list}
+    return render(request, 'sa-notification-management.html', context)

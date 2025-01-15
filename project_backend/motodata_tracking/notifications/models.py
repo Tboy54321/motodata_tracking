@@ -11,6 +11,7 @@ READ_RECEIPT = [
 
 class Notification(models.Model):
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="notifications")
+    service_adviser = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sa_notifications", default=1)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name='vehicles')
     title = models.CharField(max_length=200)
     notification_type = models.CharField(

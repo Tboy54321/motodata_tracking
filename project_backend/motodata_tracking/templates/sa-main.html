@@ -9,10 +9,10 @@
         <nav class="sidebar">
             <div class="logo">MotoTrack</div>
             <ul class="nav-items">
-                <li class="active"><a href="#"><span class="icon">🔧</span> Service Adviser</a></li>
-                <li class=""><a href="#"><span class="icon">🚗</span>Vehicle Management</a></li>
-                <li><a href="#"><span class="icon">🔔</span> Notifications</a></li>
-                <li><a href="#"><span class="icon">👤</span> Profile</a></li>
+                <li class="{% if request.resolver_match.view_name == 'sa-dashboard' %}active{% endif %}"><a href="{% url 'sa-dashboard' %}"><span class="icon">🔧</span> Service Adviser</a></li>
+                <li class="{% if request.resolver_match.view_name == 'sa-vehicles-management' %}active{% endif %}"><a href="{% url 'sa-vehicles-management' %}"><span class="icon">🚗</span>Vehicle Management</a></li>
+                <li class="{% if request.resolver_match.view_name == 'sa-notifications' %}active{% endif %}" ><a href="{% url 'sa-notifications' %}"><span class="icon">🔔</span> Notifications</a></li>
+                <li class="{% if request.resolver_match.view_name == 'sa-profile' %}active{% endif %}" ><a href="{% url 'sa-profile' %}"><span class="icon">👤</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
             </ul>
             {% if request.user.is_authenticated %}
@@ -29,7 +29,7 @@
             <header>
                 <div class="user-info">
                     <span class="notification-icon">🔔</span>
-                    <span class="user-name">John Doe</span>
+                    <span class="user-name">{{ request.user.username }}</span>
                     <span class="user-avatar">👤</span>
                 </div>
             </header>

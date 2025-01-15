@@ -2,21 +2,29 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from .models import Notification
 
-def searchQuery(request):
+def searchQuery(request, user_type='customer'):
     search_query = ''
 
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
 
     # vehicles = Vehicle.objects.filter(owner=request.user)
-    notification = Notification.objects.filter(
-    Q(customer=request.user) & 
-        (
-        Q(title__icontains=search_query) | 
-        Q(message__icontains=search_query)
+    if user_type == 'customer':
+        notification = Notification.objects.filter(
+        Q(customer=request.user) & 
+            (
+            Q(title__icontains=search_query) | 
+            Q(message__icontains=search_query)
+            )
         )
-    )
-
+    elif user_type == 'service_adviser':
+        notification = Notification.objects.filter(
+        Q(service_adviser=request.user) & 
+            (
+            Q(title__icontains=search_query) | 
+            Q(message__icontains=search_query)
+            )
+        )
     return search_query, notification
 
 def paginatePage(queryset, results, page):

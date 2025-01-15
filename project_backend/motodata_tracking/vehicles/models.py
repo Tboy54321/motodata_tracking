@@ -11,6 +11,7 @@ STATUS_CHOICES = [
 
 class Vehicle(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="vehicles")
+    service_adviser = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="service_adviser")
     registration_number = models.CharField(max_length=50, unique=True)
     make = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
@@ -40,3 +41,4 @@ class Tasks(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.get_status_display()})"
+    

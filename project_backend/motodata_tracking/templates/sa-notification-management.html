@@ -12,10 +12,6 @@
             <h1>Notifications Management</h1>
             <p>Manage and send notifications to customers</p>
         </div>
-        <button class="new-notification-btn">
-            <i class="fas fa-paper-plane"></i>
-            Send New Notification
-        </button>
     </div>
 
     <div class="search-bar">
@@ -27,42 +23,22 @@
     </div>
 
     <div class="notifications-list">
-        <div class="notification-card">
-            <div class="notification-header">
-                <span class="notification-title">John Doe</span>
-                <span class="notification-time">2 hours ago</span>
-            </div>
-            <div class="notification-vehicle">2020 Toyota Camry</div>
-            <p>Your vehicle service is 65% complete. Brake system maintenance is progressing as scheduled.</p>
-            <div class="notification-status">
-                <span class="status-sent">Sent</span>
-                <span class="status-read"><i class="fas fa-check"></i> Read</span>
-            </div>
-        </div>
 
+        {% for notification in notification_list %}
         <div class="notification-card">
             <div class="notification-header">
-                <span class="notification-title">Jane Smith</span>
-                <span class="notification-time">3 hours ago</span>
+                <span class="notification-title">{{ notification.customer.first_name }} {{ notification.customer.last_name }}</span>
+                <span class="notification-time">{{ notification.created_at|timesince }}</span>
             </div>
-            <div class="notification-vehicle">2021 Honda Civic</div>
-            <p>Additional parts are required for your service. This may extend the completion time.</p>
+            <div class="notification-vehicle">{{ notification.vehicle.year }}</div>
+            <p>{{ notification.message|slice:":100" }}. . . .</p>
             <div class="notification-status">
                 <span class="status-sent">Sent</span>
+                <span class="status-read"><i class="fas fa-check"></i>Unread</span>
             </div>
         </div>
-
-        <div class="notification-card">
-            <div class="notification-header">
-                <span class="notification-title">Jane Smith</span>
-                <span class="notification-time">3 hours ago</span>
-            </div>
-            <div class="notification-vehicle">2021 Honda Civic</div>
-            <p>Additional parts are required for your service. This may extend the completion time.</p>
-            <div class="notification-status">
-                <span class="status-sent">Sent</span>
-            </div>
-        </div>
+        {% endfor %}
+        
     </div>
 </main>
 {% endblock %}
