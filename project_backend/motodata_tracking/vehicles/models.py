@@ -4,7 +4,6 @@ from django.conf import settings
 # Create your models here.
 
 STATUS_CHOICES = [
-    ('Pending', 'pending'),
     ('In Progress', 'In Progress'),
     ('Completed', 'Completed'),
 ]

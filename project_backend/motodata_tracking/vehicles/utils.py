@@ -2,20 +2,30 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from .models import Vehicle
 
-def searchQuery(request):
+def searchQuery(request, user_type='owner'):
     search_query = ''
 
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
 
     # vehicles = Vehicle.objects.filter(owner=request.user)
-    vehicles = Vehicle.objects.filter(
-    Q(owner=request.user) & 
-        (
-        Q(make__icontains=search_query) | 
-        Q(model__icontains=search_query)
+    if user_type == 'owner':
+        vehicles = Vehicle.objects.filter(
+        Q(owner=request.user) & 
+            (
+            Q(make__icontains=search_query) | 
+            Q(model__icontains=search_query)
+            )
         )
-    )
+    elif user_type == 'service_adviser':
+        vehicles = Vehicle.objects.filter(
+        Q(service_adviser=request.user) & 
+            (
+            Q(make__icontains=search_query) |
+            Q(model__icontains=search_query) |
+            Q(year__icontains=search_query)
+            )
+        )
 
     return search_query, vehicles
 

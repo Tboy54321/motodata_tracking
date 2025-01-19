@@ -25,5 +25,5 @@ def notifications(request):
 @role_required('service_adviser')
 def saNotifications(request):
     search_query, notification_list = searchQuery(request, user_type='service_adviser')
-    context = {"notification_list": notification_list}
+    context = {"notification_list": notification_list, 'search_query': search_query}
     return render(request, 'sa-notification-management.html', context)

@@ -13,14 +13,22 @@
             <p>Manage and send notifications to customers</p>
         </div>
     </div>
-
-    <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Search notifications...">
-        <button class="filter-button">
-            <i class="fas fa-filter"></i>
-            All Types
-        </button>
-    </div>
+    
+    <form method="get" action="{% url 'sa-notifications' %}">
+        <div class="search-bar">
+            <input
+                type="text"
+                name="search_query"
+                value="{{search_query}}"
+                class="search-input"
+                placeholder="Search notifications..."
+            />
+            <!-- <button class="filter-button">
+                <i class="fas fa-filter"></i>
+                All Types
+            </button> -->
+        </div>
+    </form>
 
     <div class="notifications-list">
 

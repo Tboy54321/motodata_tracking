@@ -28,9 +28,9 @@
         <main class="main-content">
             <header>
                 <div class="user-info">
-                    <span class="notification-icon">🔔</span>
+                    <a href="{% url 'sa-notifications' %}"><span class="notification-icon">🔔</span></a>
                     <span class="user-name">{{ request.user.username }}</span>
-                    <span class="user-avatar">👤</span>
+                    <a href="{% url 'sa-profile' %}"><span class="user-avatar">👤</span></a>
                 </div>
             </header>
             {% block content %}

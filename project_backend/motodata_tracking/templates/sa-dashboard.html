@@ -12,21 +12,21 @@
     <p class="subtitle">Overview of service operations and customer feedback</p>
 
     <div class="stats-grid">
-        <div class="stat-card">
+        <!-- <div class="stat-card">
             <div class="stat-content">
                 <div class="stat-info">
                     <h3>Active Jobs</h3>
-                    <span class="stat-number">{{ vehicle_count }}</span>
+                    <span class="stat-number">{{ total_vehicles }}</span>
                 </div>
                 <div class="stat-icon blue">⏱️</div>
             </div>
-        </div>
+        </div> -->
 
         <div class="stat-card">
             <div class="stat-content">
                 <div class="stat-info">
-                    <h3>Completed Today</h3>
-                    <span class="stat-number">5</span>
+                    <h3>Completed Jobs</h3>
+                    <span class="stat-number">{{ completed_jobs|length }}</span>
                 </div>
                 <div class="stat-icon green">✓</div>
             </div>
@@ -35,8 +35,8 @@
         <div class="stat-card">
             <div class="stat-content">
                 <div class="stat-info">
-                    <h3>Pending Jobs</h3>
-                    <span class="stat-number">3</span>
+                    <h3>Jobs in progress</h3>
+                    <span class="stat-number">{{ in_progress_jobs|length }}</span>
                 </div>
                 <div class="stat-icon yellow">⏳</div>
             </div>
@@ -46,7 +46,7 @@
             <div class="stat-content">
                 <div class="stat-info">
                     <h3>Total Customers</h3>
-                    <span class="stat-number">42</span>
+                    <span class="stat-number">{{ total_vehicles }}</span>
                 </div>
                 <div class="stat-icon purple">👥</div>
             </div>

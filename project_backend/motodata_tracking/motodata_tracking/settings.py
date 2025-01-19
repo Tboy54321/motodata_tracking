@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,7 +77,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'motodata_tracking.wsgi.application'
+# WSGI_APPLICATION = 'motodata_tracking.wsgi.application'
+ASGI_APPLICATION = 'motodata_tracking.asgi.application'
 
 
 # Database
