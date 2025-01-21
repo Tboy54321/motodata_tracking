@@ -25,4 +25,5 @@ urlpatterns = [
     path('notifications/', include('notifications.urls')),
     path('feedback/', include('feedback.urls')),
     path('activities/', include('activities.urls')),
+    path('chat/', include('livechat.urls')),
 ]

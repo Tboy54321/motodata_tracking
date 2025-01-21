@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/livechat.css' %}">
+    {% endblock styles %}
+</head>
+<body>
+    <div id="chat-box">
+        <!-- Minimized Chat Button -->
+        <div id="chat-toggle" onclick="toggleChat()">
+            <span>💬 Chat</span>
+        </div>
+    
+        <!-- Chat Window -->
+        <div id="chat-window">
+            <div id="chat-header">
+                <span>Live Chat</span>
+                <button id="close-chat" onclick="toggleChat()">✖</button>
+            </div>
+            <div id="chat-messages"></div>
+            <div id="chat-input">
+                <textarea id="message-input" placeholder="Type your message..."></textarea>
+                <button id="send-message" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // Toggle Chat Window
+    function toggleChat() {
+        const chatWindow = document.getElementById("chat-window");
+        chatWindow.style.display =
+            chatWindow.style.display === "none" || !chatWindow.style.display
+                ? "flex"
+                : "none";
+    }
+
+    // Send Message
+    function sendMessage() {
+        const messageInput = document.getElementById("message-input");
+        const chatMessages = document.getElementById("chat-messages");
+
+        const messageText = messageInput.value.trim();
+        if (messageText) {
+            // Add the message to the chat window
+            const messageElement = document.createElement("div");
+            messageElement.textContent = messageText;
+            messageElement.style.padding = "8px";
+            messageElement.style.margin = "5px 0";
+            messageElement.style.background = "#e9ecef";
+            messageElement.style.borderRadius = "8px";
+            messageElement.style.textAlign = "right";
+
+            chatMessages.appendChild(messageElement);
+
+            // Clear the input field
+            messageInput.value = "";
+
+            // Auto-scroll to the bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    }
+    
+    const roomName = "{{ room_name }}";
+        const ws = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
+
+        ws.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const chatLog = document.getElementById('chat-log');
+            chatLog.innerHTML += `<p><strong>${data.username}:</strong> ${data.message}</p>`;
+        };
+
+        document.getElementById('send-message').onclick = function() {
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value;
+            ws.send(JSON.stringify({ 'message': message }));
+            messageInput.value = '';
+        };
+        // console.log("Room Name: ", "{{ room_name|escapejs }}")
+    
+</script>
+</html>

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'notifications.apps.NotificationsConfig',
     'feedback.apps.FeedbackConfig',
     'activities.apps.ActivitiesConfig',
+    'livechat.apps.LivechatConfig',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +142,13 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AUTH_USER_MODEL = 'users.CustomUser'
+
+# Configure Channels Layer with Redis
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
