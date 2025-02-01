@@ -24,10 +24,13 @@
                 <button id="close-chat" onclick="toggleChat()">✖</button>
             </div>
             <div id="chat-messages"></div>
-            <div id="chat-input">
-                <textarea id="message-input" placeholder="Type your message..."></textarea>
-                <button id="send-message" onclick="sendMessage()">Send</button>
-            </div>
+            <form id="chat-input" action="" method="POST">
+                {% csrf_token %}
+                <!-- <textarea id="message-input" placeholder="Type your message..."></textarea> -->
+                 {{form}}
+                <button type="submit" id="send-message">Send</button>
+            </form>
+            
         </div>
     </div>
 </body>
@@ -67,21 +70,21 @@
         }
     }
     
-    const roomName = "{{ room_name }}";
-        const ws = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
+    // const roomName = "{{ room_name }}";
+    //     const ws = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
 
-        ws.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            const chatLog = document.getElementById('chat-log');
-            chatLog.innerHTML += `<p><strong>${data.username}:</strong> ${data.message}</p>`;
-        };
+    //     ws.onmessage = function(e) {
+    //         const data = JSON.parse(e.data);
+    //         const chatLog = document.getElementById('chat-log');
+    //         chatLog.innerHTML += `<p><strong>${data.username}:</strong> ${data.message}</p>`;
+    //     };
 
-        document.getElementById('send-message').onclick = function() {
-            const messageInput = document.getElementById('message-input');
-            const message = messageInput.value;
-            ws.send(JSON.stringify({ 'message': message }));
-            messageInput.value = '';
-        };
+    //     document.getElementById('send-message').onclick = function() {
+    //         const messageInput = document.getElementById('message-input');
+    //         const message = messageInput.value;
+    //         ws.send(JSON.stringify({ 'message': message }));
+    //         messageInput.value = '';
+    //     };
         // console.log("Room Name: ", "{{ room_name|escapejs }}")
     
 </script>
